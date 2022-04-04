@@ -123,6 +123,7 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/btn_bg"
         android:text="@string/register"
+        android:onClick="register"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword2"
@@ -133,11 +134,12 @@
 
     <TextView
         android:id="@+id/AlreadyHaveAnAccount"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="169dp"
+        android:layout_height="26dp"
         android:layout_marginTop="16dp"
         android:scrollbarSize="8dp"
         android:text="@string/already_have_an_account"
+        android:onClick="login"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="14sp"

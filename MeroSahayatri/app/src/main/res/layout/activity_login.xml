@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bbb"
-    tools:context=".activity_main">
+    tools:context=".Login">
 
     <TextView
         android:id="@+id/logo"
@@ -40,7 +40,6 @@
         android:paddingTop="10dp"
         android:paddingEnd="10dp"
         android:paddingBottom="10dp"
-        android:text="@string/name_or_email"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -119,6 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/signup"
+            android:onClick="SignUp"
             android:textColor="#00838F" />
 
 

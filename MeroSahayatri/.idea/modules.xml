@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Mero_Sahayatri.iml" filepath="$PROJECT_DIR$/.idea/modules/Mero_Sahayatri.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Mero_Sahayatri.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Mero_Sahayatri.app.iml" />
+    </modules>
+  </component>
+</project>
