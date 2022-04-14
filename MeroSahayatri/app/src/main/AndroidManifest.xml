@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MeroSahayatri">
         <activity
-            android:name=".Login"
+            android:name=".Map"
+            android:exported="false" />
+        <activity
+            android:name=".login"
             android:exported="false" />
         <activity
             android:name=".MainFront"
