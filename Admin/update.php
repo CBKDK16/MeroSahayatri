@@ -1,6 +1,3 @@
-<?php
-
-?>
 <!doctype html>
 <html>
 	<head>
@@ -38,12 +35,12 @@
 				<h1>Hey Admin Name</h1>
 			</div>
 			<div>
-				<h2>Vehicle</h2>
+				<h2>Vehicle - Update</h2>
 			</div>
 			<div id="addvehicleform">
 				<?php require_once 'function/add.php' ?>
 				<br/>
-				<input type="submit" value="Add" name="addvehicle"/>
+				<input type="submit" value="Update" name="updatevehicle"/>
 			</div>
 		</div>
 	</body>

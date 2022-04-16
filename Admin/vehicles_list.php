@@ -24,7 +24,7 @@
 				<img src="img/logo.jpg"/>
 			</div>
 			<div>
-				<?php require_once 'menu.php' ?>
+				<?php require_once 'function/menu.php' ?>
 			</div>
 			<div>
 				<h1>Hey Admin Name</h1>
@@ -46,11 +46,11 @@
 						<td>Lagankhel</td>
 						<td>Godawari</td>
 						<td>
-							<a href="action.php">Update</a>
-							<a href="action.php">Delete</a>
+							<a href="update.php">Update</a>
+							<a href="delete.php">Delete</a>
 						</td>
 						<td>
-							<a href="action.php">Add</a>
+							<a href="checkpoint.php">Add</a>
 						</td>
 					</tr>
 				</table>

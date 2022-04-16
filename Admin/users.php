@@ -24,7 +24,7 @@
 				<img src="img/logo.jpg"/>
 			</div>
 			<div>
-				<?php require_once 'menu.php' ?>
+				<?php require_once 'function/menu.php' ?>
 			</div>
 			<div>
 				<h1>Hey Admin Name</h1>

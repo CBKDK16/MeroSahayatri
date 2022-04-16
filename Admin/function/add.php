@@ -74,6 +74,5 @@
 			<input type="text" name="available"/>
 		</div>
 	</div>
-	<br/>
-	<input type="submit" value="Add" name="addvehicle"/>
+	
 </form>
