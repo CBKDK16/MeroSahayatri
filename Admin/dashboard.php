@@ -13,6 +13,9 @@
 			h1{
 				color: #fff;
 			}
+			img{
+				position: absolute;
+			}
 		</style>
 	</head>
 	<body>

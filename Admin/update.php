@@ -41,6 +41,7 @@
 				<?php require_once 'function/add.php' ?>
 				<br/>
 				<input type="submit" value="Update" name="updatevehicle"/>
+			</form>
 			</div>
 		</div>
 	</body>

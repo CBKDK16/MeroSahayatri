@@ -5,15 +5,15 @@ if (isset($_POST['login'])){
 
 	//Validation Username
 
-	if (isset($_POST['Username']) && !empty($_POST['Username']) && trim($_POST['Username']))
+	if (isset($_POST['username']) && !empty($_POST['username']) && trim($_POST['username']))
 	{
-		$Username= trim($_POST['Username']);
-		if (strlen($Username) <4){
-			$err['Username'] = 'Enter valid length: 8 Character';
+		$username= trim($_POST['username']);
+		if (strlen($username) <8){
+			$err['username'] = 'Enter valid length: 8 Character';
 		}
 	}
 	else{
-		$err['Username'] = 'Enter Username';
+		$err['username'] = 'Enter Username';
 	}
 	//Validation Password
 	if (isset($_POST['password']) && !empty($_POST['password'])){
@@ -24,7 +24,7 @@ if (isset($_POST['login'])){
 	}
 	if(count($err)==0)
 	{
-		if($_POST['Username']=='manish' && $_POST['password']=='manish123')
+		if($_POST['username']=='manishkhadka' && $_POST['password']=='manish123')
 		{
 			header('location:dashboard.php');
 		}
@@ -45,23 +45,29 @@ if (isset($_POST['login'])){
 	<h2>Sign to Continue...</h2>
 	<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>" >
 		<div class="new">
-			<label>Username:</label>
-			<input type="text" name="Username" placeholder="Enter Your Username" value="<?php echo isset ($Username)? $Username:''; ?>">
-			<?php if (isset($err['Username']))
-			{
-				echo $err['Username'];
-
-			} ?>
-			<br>
-			<label>Password:</label>
-			<input type="Password" name="password" placeholder="Enter your Password">
-			<?php if (isset($err['password']))
-			{
-				echo $err['password'];
-			}
-			?>
-			<br>
-			<button type="submit" name="login">Login</button>
+			<div>
+				<label>Username:</label>
+				<input type="text" name="username" placeholder="Enter Your Username" value="<?php echo isset ($username)? $username:''; ?>">
+				<?php if (isset($err['username']))
+				{
+					echo $err['username'];
+				} ?>
+			</div>
+			<div>
+				<label>Password:</label>
+				<input type="Password" name="password" placeholder="Enter your Password">
+				<?php if (isset($err['password']))
+				{
+					echo $err['password'];
+				}
+				?>
+			</div>
+			<div>
+				<input type="checkbox" name="remember" value="remember">Remember me<br/>
+			</div>
+			<div>
+				<button type="submit" name="login">Login</button>
+			</div>
 		</div>
 		
 	</form>

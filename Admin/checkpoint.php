@@ -57,10 +57,11 @@
 							<input type="number" name="checkpointlatitude"/>
 						</div>
 					</div>
-				</form>
-				<br/>
-				<input type="submit" value="Add" name="addcheckpoint"/>
-				<input type="submit" value="Delete" name="deletecheckpoint"/>
+				
+					<br/>
+					<input type="submit" value="Add" name="addcheckpoint"/>
+					<input type="submit" value="Delete" name="deletecheckpoint"/>
+				
 			</div>
 		</div>
 	</body>
