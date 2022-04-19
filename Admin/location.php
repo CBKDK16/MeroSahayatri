@@ -1,6 +1,7 @@
 <?php
-
-	include 'function/validate.php';
+print_r($_POST);
+	require 'function/validate.php';
+	require 'function/constant.php';
 	$error = [];
 	$location = $longitude = $latitude ='';
 	if(isset($_POST['addLocation']))
@@ -30,6 +31,28 @@
 		else
 		{
 			$error['latitude'] = 'Enter latitude';
+		}
+
+		//database connection
+		if(count($error) == 0)
+		{
+			echo 'manish';
+			try
+			{
+				$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+				$sql = "insert into location_tbl(Name,latitude,longitute)
+				values('$name','$latitude','$longitude')";
+
+				//query execution
+				if(mysqli_query($connection,$sql))
+				{
+					$successmsg="location add successfully";
+				}
+			}
+			catch(Exception $e)
+			{
+				die('Database error:- '.$e->getMessage());
+			}
 		}
 	}
 ?>
@@ -67,11 +90,26 @@
 			}
 			
 		</style>
-		<script src="js/jquery.js"></script>
-		<script>
-			alert ="hello";
-			
-		</script>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<!-- <script type="text/javascript">
+			function addMore()
+			{
+				$(".clonelocation:last").clone().insertAfter(".clonelocation:last");
+			}
+			function deleteRow()
+			{
+				$(".clonelocation").each(function(index,item)
+				{
+					jQuery(':checkbox',this).each(function()
+					{
+						if($(this).is(':checked'))
+						{
+							$(item).remove();
+						}
+					});
+				});
+			}
+		</script> -->
 	</head>
 	<body>
 		<img class ="background" src="img/background.jpg"/>
@@ -86,40 +124,46 @@
 				<h1>Hey Admin Name</h1>
 			</div>
 			<div>
+				<?php if(isset($successmsg)){?>
+					<p class = "success" ><?php echo $successmsg ?></p>
+				<?php }?>
+			</div>
+			<div>
 				<div>
 					<h2>Location</h2>
 				</div>
-				<div>
 				<hr/>
-				<form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
-					<div id="cloneLocation">
-						<div>
-
-						</div>
-						<div>
-							<label for="location">Location</label>
-							<input type="text" name="location" value="<?php echo $location ?>"/>
-							<?php echo displayError($error,'location'); ?>
-						</div>
-						<div>
-							<label for="longitude">Longitude</label>
-							<input type="number" name="longitude" value="<?php echo $longitude ?>"/>
-							<?php echo displayError($error,'longitude');?>
-						</div>
-						<div>
-							<label for="latitude">Latitude</label>
-							<input type="number" name="latitude" value="<?php echo $latitude ?>"/>
-							<?php echo displayError($error,'latitude');?>
+				<div style="background:grey;">
+					<form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+						<div class="clonelocation">
+							<div>
+								<input type="checkbox" name="check"/>
+							</div>
+							<div>
+								<label for="location">Location</label>
+								<input type="text" name="name" value="<?php echo $location ?>"/>
+								<?php echo displayError($error,'location'); ?>
+							</div>
+							<div>
+								<label for="longitude">Longitude</label>
+								<input type="text" name="longitude" value="<?php echo $longitude ?>"/>
+								<?php echo displayError($error,'longitude');?>
+							</div>
+							<div>
+								<label for="latitude">Latitude</label>
+								<input type="text" name="latitude" value="<?php echo $latitude ?>"/>
+								<?php echo displayError($error,'latitude');?>
+							</div>
 						</div>
 						<div>
 							<input type="button" name="add_item" value="Add More " onclick="addMore()"/>
 							<input type="button" name="add_item" value="Delete" onclick="deleteRow()"/>
 						</div>
-					</div>
-					<div>
-						<input type="submit" value="ADD" name="addLocation"/>
-					</div>
-				</form>
+						<div>
+							<input type="submit" value="ADD" name="addLocation"/>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</body>

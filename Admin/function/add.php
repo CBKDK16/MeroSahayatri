@@ -90,7 +90,7 @@
 			<label for="checkpoint">Checkpoint</label>
 		</div>
 		<hr/>
-		<div id="add">
+		<div class="add">
 			<div>
 				<input type="checkbox" name=""/>
 			</div>

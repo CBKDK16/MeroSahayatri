@@ -155,7 +155,7 @@
 			}
 			function deleteRow()
 			{
-				$('div.add').each(function(index,item){
+				$('.add').each(function(index,item){
 					jQuery(':checkbox',this).each(
 						function(){
 							if($(this).is(':checked'))
