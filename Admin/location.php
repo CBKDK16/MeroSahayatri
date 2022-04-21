@@ -1,52 +1,78 @@
 <?php
-print_r($_POST);
 	require 'function/validate.php';
 	require 'function/constant.php';
 	$error = [];
-	$location = $longitude = $latitude ='';
+	$name[] = $longitude = $latitude ='';
 	if(isset($_POST['addLocation']))
 	{
-		if(requireValidation($_POST,'location'))
-		{
-			$location = $_POST['location'];
-		}
-		else
-		{
-			$error['location'] = 'Enter location.';
-		}
+		// foreach($name as $key => $value)
+		// {
+		// 	if(!empty($name[$key]))
+		// 	{
+		// 		$key = $_POST['name'];
+		// 	}
+		// 	else
+		// 	{
+		// 		$error[$key] = 'Enter location.';
+		// 	}
+		// }
+		// if(requireValidation('name',))
+		// {
+		// 	$name = $_POST['name'];
+		// }
+		// else
+		// {
+		// 	$error['name'] = 'Enter location.';
+		// }
 
-		if(requireValidation($_POST,'longitude'))
-		{
+		// if(requireValidation($_POST,'longitude'))
+		// {
+		// 	$longitude = $_POST['longitude'];
+		// }
+		// else
+		// {
+		// 	$error['longitude'] = 'Enter longitude';
+		// }
+
+		// if(requireValidation($_POST,'latitude'))
+		// {
+		// 	$latitude = $_POST['latitude'];
+		// }
+		// else
+		// {
+		// 	$error['latitude'] = 'Enter latitude';
+		// }
+
 			$longitude = $_POST['longitude'];
-		}
-		else
-		{
-			$error['longitude'] = 'Enter longitude';
-		}
-
-		if(requireValidation($_POST,'latitude'))
-		{
 			$latitude = $_POST['latitude'];
-		}
-		else
-		{
-			$error['latitude'] = 'Enter latitude';
-		}
+
 
 		//database connection
 		if(count($error) == 0)
 		{
-			echo 'manish';
 			try
 			{
 				$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
-				$sql = "insert into location_tbl(Name,latitude,longitute)
-				values('$name','$latitude','$longitude')";
-
-				//query execution
-				if(mysqli_query($connection,$sql))
+				foreach ($name as $key => $value) 
+				{
+					$sql = "INSERT INTO location_tbl(name,longitute,latitude)
+					values('".$value."','".$longitude[$key]."','".$latitude[$key]."')";
+					$result1 = mysqli_query($connection,$sql);
+				}
+				// query execution
+				if($result1)
 				{
 					$successmsg="location add successfully";
+				}
+				$select = "SELECT * FROM location_tbl ORDER BY location_id DESC";
+				$result = mysqli_query($connection,$select);
+				$locations = [];
+				if(mysqli_num_rows($result)>0)
+				{
+					while($row = mysqli_fetch_assoc($result))
+					{
+						array_push($locations,$row);
+					}
 				}
 			}
 			catch(Exception $e)
@@ -55,6 +81,7 @@ print_r($_POST);
 			}
 		}
 	}
+		print_r($error);
 ?>
 <!DOCTYPE html>
 <html>
@@ -91,7 +118,7 @@ print_r($_POST);
 			
 		</style>
 		<script type="text/javascript" src="js/jquery.js"></script>
-		<!-- <script type="text/javascript">
+		<script type="text/javascript">
 			function addMore()
 			{
 				$(".clonelocation:last").clone().insertAfter(".clonelocation:last");
@@ -109,7 +136,7 @@ print_r($_POST);
 					});
 				});
 			}
-		</script> -->
+		</script>
 	</head>
 	<body>
 		<img class ="background" src="img/background.jpg"/>
@@ -141,18 +168,18 @@ print_r($_POST);
 							</div>
 							<div>
 								<label for="location">Location</label>
-								<input type="text" name="name" value="<?php echo $location ?>"/>
-								<?php echo displayError($error,'location'); ?>
+								<input type="text" name="name[]" value=""/>
+								
 							</div>
 							<div>
 								<label for="longitude">Longitude</label>
-								<input type="text" name="longitude" value="<?php echo $longitude ?>"/>
-								<?php echo displayError($error,'longitude');?>
+								<input type="text" name="longitude[]" value=""/>
+								
 							</div>
 							<div>
 								<label for="latitude">Latitude</label>
-								<input type="text" name="latitude" value="<?php echo $latitude ?>"/>
-								<?php echo displayError($error,'latitude');?>
+								<input type="text" name="latitude[]" value=""/>
+								
 							</div>
 						</div>
 						<div>
@@ -163,6 +190,25 @@ print_r($_POST);
 							<input type="submit" value="ADD" name="addLocation"/>
 						</div>
 					</form>
+				</div>
+				<div>
+					<table>
+						<tr>
+							<th>id</th>
+							<th>Name</th>
+							<th>Longitude</th>
+							<th>latitude</th>
+						</tr>
+						<?php foreach($locations as $key => $location) {?>
+
+						<tr>
+							<td><?php echo $location['Location_id']?></td>
+							<td><?php echo $location['Name']?></td>
+							<td><?php echo $location['Longitute']?></td>
+							<td><?php echo $location['Latitude']?></td>
+						</tr>
+					<?php } ?>
+					</table>
 				</div>
 			</div>
 		</div>
