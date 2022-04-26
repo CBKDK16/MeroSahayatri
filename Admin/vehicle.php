@@ -146,7 +146,7 @@
 				background-color:#fff ;
 			}
 		</style>
-		<script src="http://code.jquery.com/jquery-2.1.1.js">
+		<script src="js/jquery.js">
 		</script>
 		<script type="text/javascript">
 			function addMore()
@@ -165,6 +165,22 @@
 						});
 				});
 			}
+
+			$(document).ready(function(){
+				$('#location').change(function(){
+					var location = $(this).val();
+					$.ajax({
+						url:'get_location_list.php',
+						data:{'Location_id':location},
+						method:'post',
+						dataType:'text',
+						success:function(response)
+						{
+							$('#longitude').html(response);
+						}
+					});
+				});
+			})
 		</script>
 	</head>
 	<body>

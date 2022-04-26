@@ -1,3 +1,25 @@
+<?php 
+	require_once 'function/constant.php';
+	try
+	{
+		$connect = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+		$sql = "select * from location_tbl";
+		$res = mysqli_query($connect,$sql);
+		$locations = [];
+		if(mysqli_num_rows($res)>0)
+		{
+			while($result = mysqli_fetch_assoc($res))
+			{
+				array_push($locations,$result);
+			}
+		}
+	}
+	catch(Exception $e)
+	{
+		echo false;
+	}
+	print_r($result);
+?>
 <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
 	<div>
 		<div>
@@ -26,18 +48,13 @@
 		<hr/>
 		<div>
 			<label for="location">Location</label>
-			<input type="text" name="fromlocation" value="<?php echo $fromlocation?>"/>
-			<?php echo displayError($error,'fromlocation'); ?>
-		</div>
-		<div>
-			<label for="longitude">Longitude</label>
-			<input type="number" name="fromlongitude" value="<?php echo $fromlongitude?>"/>
-			<?php echo displayError($error,'fromlongitude');?>
-		</div>
-		<div>
-			<label for="latitude">Latitude</label>
-			<input type="number" name="fromlatitude" value="<?php echo $fromlatitude?>"/>
-			<?php echo displayError($error,'fromlatitude');?>
+			<select name="location" id="location">
+				<option value="">Select location</option>
+				<?php
+				foreach($locations as $location){?>
+				<option value="<?php $id = $location['Location_id']; ?>"><?php echo $location['Name']; ?></option>
+				<?php } ?>
+			</select>
 		</div>
 	</div>
 

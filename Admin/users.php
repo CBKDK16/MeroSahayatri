@@ -1,3 +1,20 @@
+<?php 
+	$users =[];
+	require_once 'function/constant.php';
+	$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+	$select = "SELECT * from users";
+	$result = mysqli_query($connection,$select);
+	if(mysqli_num_rows($result)>0)
+	{
+		while($row = mysqli_fetch_assoc($result))
+		{
+			array_push($users,$row);
+		}
+
+		print_r($users);
+	}
+
+?>
 <!doctype html>
 <html>
 	<head>
@@ -35,19 +52,23 @@
 			<div>
 				<table border="1px">
 					<tr>
+						<th>Id</th>
 						<th>Username</th>
 						<th>Email</th>
 						<th>Status</th>
 						<th>Action</th>
 					</tr>
+					<?php foreach($users as $key => $user) {?>
 					<tr>
-						<td>ram</td>
-						<td>ram@gmail.com</td>
+						<td><?php echo $key+1?></td>
+						<td><?php echo $user['username']?></td>
+						<td><?php echo $user['email']?></td>
 						<td>1</td>
 						<td>
 							<a href="action.php">Activated</a>
 						</td>
 					</tr>
+				<?php }?>
 				</table>
 			</div>
 		</div>

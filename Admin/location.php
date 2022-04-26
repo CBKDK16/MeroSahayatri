@@ -2,7 +2,8 @@
 	require 'function/validate.php';
 	require 'function/constant.php';
 	$error = [];
-	$name[] = $longitude = $latitude ='';
+	$locations = [];
+	$name = $longitude = $latitude ='';
 	if(isset($_POST['addLocation']))
 	{
 		// foreach($name as $key => $value)
@@ -42,7 +43,7 @@
 		// {
 		// 	$error['latitude'] = 'Enter latitude';
 		// }
-
+			$name = $_POST['name'];
 			$longitude = $_POST['longitude'];
 			$latitude = $_POST['latitude'];
 
@@ -66,7 +67,7 @@
 				}
 				$select = "SELECT * FROM location_tbl ORDER BY location_id DESC";
 				$result = mysqli_query($connection,$select);
-				$locations = [];
+				
 				if(mysqli_num_rows($result)>0)
 				{
 					while($row = mysqli_fetch_assoc($result))
@@ -81,7 +82,6 @@
 			}
 		}
 	}
-		print_r($error);
 ?>
 <!DOCTYPE html>
 <html>
@@ -118,10 +118,26 @@
 			
 		</style>
 		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/dist/jquery.validate.min.js"></script>
+
 		<script type="text/javascript">
+			//event propragration in jquery validation
+			$(document).ready(function(){
+					$('#locationfrom').validate();
+
+					
+				});
+
+
+
 			function addMore()
 			{
 				$(".clonelocation:last").clone().insertAfter(".clonelocation:last");
+				$('.required').each(function() {
+						 $(this).rules('add', {
+						    required: true,
+						 });
+					});
 			}
 			function deleteRow()
 			{
@@ -161,19 +177,19 @@
 				</div>
 				<hr/>
 				<div style="background:grey;">
-					<form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+					<form method="post" action="<?php echo $_SERVER['PHP_SELF']?>" id="locationfrom">
 						<div class="clonelocation">
 							<div>
 								<input type="checkbox" name="check"/>
 							</div>
 							<div>
 								<label for="location">Location</label>
-								<input type="text" name="name[]" value=""/>
+								<input type="text" name="name[]" value="" required  class="required" />
 								
 							</div>
 							<div>
 								<label for="longitude">Longitude</label>
-								<input type="text" name="longitude[]" value=""/>
+								<input type="text" name="longitude[]" value="" required  class="required" />
 								
 							</div>
 							<div>
