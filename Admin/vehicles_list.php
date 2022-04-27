@@ -1,8 +1,38 @@
+<?php
+print_r($route);
+	require 'function/constant.php';
+	$error = [];
+	$routes = [];
+	$name = $longitude = $latitude ='';
+	$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+	try
+	{
+		$select = "SELECT * FROM routes_tbl ORDER BY Route_id DESC";
+		$result = mysqli_query($connection,$select);
+					
+		if(mysqli_num_rows($result)>0)
+		{
+			while($row = mysqli_fetch_assoc($result))
+			{
+				array_push($routes,$row);
+			}
+		}	
+		
+	}
+	catch(Exception $e)
+	{
+		die('Database error:- '.$e->getMessage());
+	}
+
+?>
 <!doctype html>
 <html>
 	<head>
 		<title>Vehicles List</title>
 		<style>
+			*{
+				color: white;
+			}
 			#back{
 				background-image: url('img/background.jpg');
 				height: 750px;
@@ -41,10 +71,11 @@
 						<th>Action</th>
 						<th>Checkpoint</th>
 					</tr>
+					<?php foreach($routes as $key => $route) {?>
 					<tr>
-						<td>Micro</td>
-						<td>Lagankhel</td>
-						<td>Godawari</td>
+						<td><?php echo $route['Route_id']?></td>
+						<td><?php echo $route['From_id']?></td>
+						<td><?php echo $route['To_id']?></td>
 						<td>
 							<a href="update.php">Update</a>
 							<a href="delete.php">Delete</a>
@@ -53,6 +84,7 @@
 							<a href="checkpoint.php">Add</a>
 						</td>
 					</tr>
+				<?php }?>
 				</table>
 			</div>
 		</div>

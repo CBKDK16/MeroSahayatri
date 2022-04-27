@@ -10,8 +10,6 @@
 		{
 			array_push($users,$row);
 		}
-
-		print_r($users);
 	}
 
 ?>

@@ -1,18 +1,21 @@
 <?php
+print_r($_POST);
+	//to validate data in vehicle 
 	require 'function/validate.php';
+	require_once 'function/constant.php';
 	$error = [];
-	$name = $type = $fromlocation =$fromlongitude = $fromlatitude = $tolocation = $tolongitude = $tolatitude = $fare = $timeinterval = $available = '';
+	$name = $type = $fromlocation = $tolocation =  $fare = $timeinterval = $available = '';
 	if(isset($_POST['addvehicle']))
 	{
 		//vechicle
-		if(requireValidation($_POST,'name'))
-		{
-			$name = $_POST['name'];
-		}
-		else
-		{
-			$error['name'] = 'Please enter name';
-		}
+		// if(requireValidation($_POST,'name'))
+		// {
+		// 	$name = $_POST['name'];
+		// }
+		// else
+		// {
+		// 	$error['name'] = 'Please enter name';
+		// }
 
 		if(requireValidation($_POST,'type'))
 		{
@@ -20,7 +23,7 @@
 		}
 		else
 		{
-
+			$error['type'] = 'Please Select type';
 		}
 
 
@@ -35,25 +38,6 @@
 			$error['fromlocation'] = "Enter location";
 		}
 
-		if(requireValidation($_POST,'fromlongitude'))
-		{
-			$fromlongitude = $_POST['fromlongitude'];
-		}
-		else
-		{
-			$error['fromlongitude'] = 'Enter Longitude';
-		}
-
-		if(requireValidation($_POST,'fromlatitude'))
-		{
-			$fromlatitude = $_POST['fromlatitude'];
-		}
-		else
-		{
-			$error['fromlatitude'] = 'Enter Longitude';
-		}
-
-
 
 		//to
 
@@ -66,23 +50,6 @@
 			$error['tolocation'] = "Enter location";
 		}
 
-		if(requireValidation($_POST,'tolongitude'))
-		{
-			$tolongitude = $_POST['tolongitude'];
-		}
-		else
-		{
-			$error['tolongitude'] = 'Enter Longitude';
-		}
-
-		if(requireValidation($_POST,'tolatitude'))
-		{
-			$tolatitude = $_POST['tolatitude'];
-		}
-		else
-		{
-			$error['tolatitude'] = 'Enter Longitude';
-		}
 
 		//Details
 		if(requireValidation($_POST,'fare'))
@@ -109,13 +76,37 @@
 		{
 			$error['available'] = 'Enter available time';
 		}
+
+
+		if(count($error) == 0)
+		{
+			//insert into database 
+			try
+			{
+				$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+				$sql = "insert into routes_tbl(Vehicle_id,From_id,To_id,Fare,duration,Available)values('$type','$fromlocation','$tolocation','$fare','$timeinterval','$available')";
+				if(mysqli_query($connection,$sql))
+				{
+					$successmsg = 'Vehicle Added Sucessfully';
+				}
+
+			}
+			catch(Exception $e)
+			{
+				die('Database error :- ' . $e->getMessage());
+			}
+		}
 	}
 ?>
 <!doctype html>
 <html>
 	<head>
 		<title>Vehicles</title>
+
 		<style>
+			*{
+				color: rosybrown;
+			}
 			#back{
 				/*background-image: url('img/background.jpg');*/
 				height: 750px;
@@ -143,7 +134,8 @@
 			
 			#addvehicleform{
 				margin: 30px;
-				background-color:#fff ;
+				color: green;
+				background-color:lightgreen ;
 			}
 		</style>
 		<script src="js/jquery.js">
@@ -196,7 +188,14 @@
 				<h1>Hey Admin Name</h1>
 			</div>
 			<div>
-				<h2>Vehicle</h2>
+				<h2>
+					Vehicle
+					<?php if(isset($successmsg))
+					{
+						echo "  -  " .$successmsg ;
+					}
+					?>
+				</h2>
 			</div>
 			<div id="addvehicleform">
 				<?php require_once 'function/add.php' ?>

@@ -4,48 +4,52 @@
 	$error = [];
 	$locations = [];
 	$name = $longitude = $latitude ='';
+	$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+	try
+	{
+		$select = "SELECT * FROM location_tbl ORDER BY location_id DESC";
+		$result = mysqli_query($connection,$select);
+					
+		if(mysqli_num_rows($result)>0)
+		{
+			while($row = mysqli_fetch_assoc($result))
+			{
+				array_push($locations,$row);
+			}
+		}	
+	}
+	catch(Exception $e)
+	{
+		die('Database error:- '.$e->getMessage());
+	}
 	if(isset($_POST['addLocation']))
 	{
-		// foreach($name as $key => $value)
-		// {
-		// 	if(!empty($name[$key]))
-		// 	{
-		// 		$key = $_POST['name'];
-		// 	}
-		// 	else
-		// 	{
-		// 		$error[$key] = 'Enter location.';
-		// 	}
-		// }
-		// if(requireValidation('name',))
-		// {
-		// 	$name = $_POST['name'];
-		// }
-		// else
-		// {
-		// 	$error['name'] = 'Enter location.';
-		// }
-
-		// if(requireValidation($_POST,'longitude'))
-		// {
-		// 	$longitude = $_POST['longitude'];
-		// }
-		// else
-		// {
-		// 	$error['longitude'] = 'Enter longitude';
-		// }
-
-		// if(requireValidation($_POST,'latitude'))
-		// {
-		// 	$latitude = $_POST['latitude'];
-		// }
-		// else
-		// {
-		// 	$error['latitude'] = 'Enter latitude';
-		// }
+		if(requireValidation($_POST,'name'))
+		{
 			$name = $_POST['name'];
+		}
+		else
+		{
+			$error['name'] = 'Enter location';
+		}
+		if(requireValidation($_POST,'longitude'))
+		{
 			$longitude = $_POST['longitude'];
+		}
+		else
+		{
+			$error['longitude'] = 'Enter longitude';
+		}
+
+		if(requireValidation($_POST,'latitude'))
+		{
 			$latitude = $_POST['latitude'];
+		}
+		else
+		{
+			$error['latitude'] = 'Enter latitude';
+		}
+			
 
 
 		//database connection
@@ -53,28 +57,15 @@
 		{
 			try
 			{
-				$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
-				foreach ($name as $key => $value) 
-				{
 					$sql = "INSERT INTO location_tbl(name,longitute,latitude)
-					values('".$value."','".$longitude[$key]."','".$latitude[$key]."')";
+					values('$name','$longitude','$latitude')";
 					$result1 = mysqli_query($connection,$sql);
-				}
 				// query execution
 				if($result1)
 				{
 					$successmsg="location add successfully";
 				}
-				$select = "SELECT * FROM location_tbl ORDER BY location_id DESC";
-				$result = mysqli_query($connection,$select);
 				
-				if(mysqli_num_rows($result)>0)
-				{
-					while($row = mysqli_fetch_assoc($result))
-					{
-						array_push($locations,$row);
-					}
-				}
 			}
 			catch(Exception $e)
 			{
@@ -120,7 +111,7 @@
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="js/dist/jquery.validate.min.js"></script>
 
-		<script type="text/javascript">
+		<!-- <script type="text/javascript">
 			//event propragration in jquery validation
 			$(document).ready(function(){
 					$('#locationfrom').validate();
@@ -152,7 +143,7 @@
 					});
 				});
 			}
-		</script>
+		</script> -->
 	</head>
 	<body>
 		<img class ="background" src="img/background.jpg"/>
@@ -179,28 +170,22 @@
 				<div style="background:grey;">
 					<form method="post" action="<?php echo $_SERVER['PHP_SELF']?>" id="locationfrom">
 						<div class="clonelocation">
-							<div>
-								<input type="checkbox" name="check"/>
-							</div>
+							
 							<div>
 								<label for="location">Location</label>
-								<input type="text" name="name[]" value="" required  class="required" />
+								<input type="text" name="name" value="" required  class="required" />
 								
 							</div>
 							<div>
 								<label for="longitude">Longitude</label>
-								<input type="text" name="longitude[]" value="" required  class="required" />
+								<input type="text" name="longitude" value="" required  class="required" />
 								
 							</div>
 							<div>
 								<label for="latitude">Latitude</label>
-								<input type="text" name="latitude[]" value=""/>
+								<input type="text" name="latitude" value=""/>
 								
 							</div>
-						</div>
-						<div>
-							<input type="button" name="add_item" value="Add More " onclick="addMore()"/>
-							<input type="button" name="add_item" value="Delete" onclick="deleteRow()"/>
 						</div>
 						<div>
 							<input type="submit" value="ADD" name="addLocation"/>

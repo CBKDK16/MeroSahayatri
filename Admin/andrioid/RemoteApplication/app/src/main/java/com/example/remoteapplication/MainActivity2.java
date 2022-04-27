@@ -42,7 +42,7 @@ Button ibtn;
 
     private void volleyRequest() {
         RequestQueue queue= Volley.newRequestQueue(this);
-        String url="http://192.168.0.112/merosahayatri/Admin/andrioid/Example/Setdata.php";
+        String url="http://10.0.2.2/merosahayatri/Admin/andrioid/Example/Setdata.php";
         StringRequest stringRequest=new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -58,7 +58,7 @@ Button ibtn;
         }){
             public HashMap<String,String> getParams()
             {
-                aMap<String, String> param= new HashMap<>();
+                HashMap<String, String> param= new HashMap<>();
                 param.put("name",nedt.getText().toString());
                 param.put("address",aedt.getText().toString());
                 return param;

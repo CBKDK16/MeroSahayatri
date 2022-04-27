@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void volleyRequest() {
         RequestQueue queue= Volley.newRequestQueue(this);
-        String url="http://10.0.2.2/Example/Getdata.php";
+        String url="http://10.0.2.2/merosahayatri/Admin/andrioid/Example/Getdata.php";
         StringRequest stringRequest=new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 roll.add(student.getInt("roll"));
                 name.add(student.getString("name"));
                 address.add(student.getString("address"));
-                //Log.d("Row"+i," Roll="+roll+" name="+name+" Address="+address);
+                Log.d("Row"+i," Roll="+roll+" name="+name+" Address="+address);
             }
             ListAdapter adapter=new ListAdapter(this,roll,name,address);
             list.setAdapter(adapter);
