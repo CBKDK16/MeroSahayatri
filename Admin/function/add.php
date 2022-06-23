@@ -1,5 +1,7 @@
 <?php 
+	//to validate data in vehicle 
 	require_once 'function/constant.php';
+	
 	try
 	{
 		$connect = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
@@ -106,7 +108,7 @@
 			<label for="available">Available</label>
 			<input type="text" name="available"
 			value="<?php echo $available?>" />
-			<?php echo displayError($error,'available');?>
+			<?php echo displayError($error,'available');?> 
 		</div>
 	</div>
 	

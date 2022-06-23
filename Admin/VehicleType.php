@@ -58,9 +58,80 @@
 		}
 	}
 ?>
+<!DOCTYPE html>
+<html>
+<title>Dashboard</title>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body> 
+    <input type="checkbox" id="menu">
+    <nav>
+         <label>Mero Sahayatri</label>
+        <ul>
+            <li>
+                <a href="#">Logout</a>
+            </li>
+        </ul>
+         <label for="menu" class="menu-bar"> 
+            <i class="fa fa-bars"></i> 
+        </label>
+    </nav>
+    <div class="side-menu">
+        <center> <img src="car.jpg">
+        <!-- <br><br>-->
+            <h2>Admin Page</h2>
+        </center>
+        <!-- <br>-->
+         <?php require "function/menu.php";?>
+    </div>
+    <div class="data">
+    	<div>
+				<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+					<div class="vehicle">
+						<label>Vehicle Type</label>
+						<br>
+						<input type="text" name="vname">
+						<?php if(isset($err['vname']))
+						{
+							echo $err['vname'];
+						}
+						?>
+					</div>
+						<br>
+					<div>
+						<button type="submit" name="add">Add</button>
+					</div>
+				</form>
+			</div>
+			<div>
+					<table>
+						<tr>
+							<th>id</th>
+							<th>type</th>
+						</tr>
+						<?php foreach($locations as $key => $location) {?>
+
+						<tr>
+							<td><?php echo $location['Vehicle_id']?></td>
+							<td><?php echo $location['Type']?></td>
+						</tr>
+					<?php } ?>
+					</table>
+			</div>
+     </div>
+</body>
+
+</html>
 
 
-<!doctype html>
+
+//purano
+<!-- <!doctype html>
 <html>
 	<head>
 		<title>Dashboard</title>
@@ -124,4 +195,4 @@
 			</div>
 		</div>
 	</body>
-</html>
+</html> -->

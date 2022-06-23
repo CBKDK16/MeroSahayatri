@@ -15,7 +15,7 @@ public class MainFront extends AppCompatActivity {
     }
     public void button(View view)
     {
-        Intent intent = new Intent(this,Login.class);
+        Intent intent = new Intent(this, login.class);
         startActivity(intent);
     }
 }

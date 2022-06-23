@@ -76,6 +76,99 @@
 ?>
 <!DOCTYPE html>
 <html>
+<title>Dashboard</title>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body> 
+    <input type="checkbox" id="menu">
+    <nav>
+         <label>Mero Sahayatri</label>
+        <ul>
+            <li>
+                <a href="#">Logout</a>
+            </li>
+        </ul>
+         <label for="menu" class="menu-bar"> 
+            <i class="fa fa-bars"></i> 
+        </label>
+    </nav>
+    <div class="side-menu">
+        <center> <img src="car.jpg">
+        <!-- <br><br>-->
+            <h2>Admin Page</h2>
+        </center>
+        <!-- <br>-->
+         <?php require "function/menu.php";?>
+    </div>
+    <div class="data">
+    	<div>
+				<?php if(isset($successmsg)){?>
+					<p class = "success" ><?php echo $successmsg ?></p>
+				<?php }?>
+			</div>
+			<div>
+				<div>
+					<h2>Location</h2>
+				</div>
+				<hr/>
+				<div style="background:grey;">
+					<form method="post" action="<?php echo $_SERVER['PHP_SELF']?>" id="locationfrom">
+						<div class="clonelocation">
+							
+							<div>
+								<label for="location">Location</label>
+								<input type="text" name="name" value="" required  class="required" />
+								
+							</div>
+							<div>
+								<label for="longitude">Longitude</label>
+								<input type="text" name="longitude" value="" required  class="required" />
+								
+							</div>
+							<div>
+								<label for="latitude">Latitude</label>
+								<input type="text" name="latitude" value=""/>
+								
+							</div>
+						</div>
+						<div>
+							<input type="submit" value="ADD" name="addLocation"/>
+						</div>
+					</form>
+				</div>
+				<div>
+					<table>
+						<tr>
+							<th>id</th>
+							<th>Name</th>
+							<th>Longitude</th>
+							<th>latitude</th>
+						</tr>
+						<?php foreach($locations as $key => $location) {?>
+
+						<tr>
+							<td><?php echo $location['Location_id']?></td>
+							<td><?php echo $location['Name']?></td>
+							<td><?php echo $location['Longitute']?></td>
+							<td><?php echo $location['Latitude']?></td>
+						</tr>
+					<?php } ?>
+					</table>
+				</div>
+			</div>
+     </div>
+</body>
+
+</html>
+
+//purano
+<!-- <!DOCTYPE html>
+<html>
 	<head>
 		<title>Vehicles</title>
 		<style>
@@ -144,7 +237,7 @@
 				});
 			}
 		</script> -->
-	</head>
+	<!-- </head>
 	<body>
 		<img class ="background" src="img/background.jpg"/>
 		<div id="back">
@@ -214,4 +307,4 @@
 			</div>
 		</div>
 	</body>
-</html>
+</html> --> -->

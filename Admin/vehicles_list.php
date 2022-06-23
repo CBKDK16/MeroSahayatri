@@ -1,13 +1,15 @@
 <?php
-print_r($route);
+
 	require 'function/constant.php';
+	
 	$error = [];
 	$routes = [];
 	$name = $longitude = $latitude ='';
 	$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+	require 'function/id_to_name.php';
 	try
 	{
-		$select = "SELECT * FROM routes_tbl ORDER BY Route_id DESC";
+		$select = "SELECT * FROM routes_tbl";
 		$result = mysqli_query($connection,$select);
 					
 		if(mysqli_num_rows($result)>0)
@@ -17,6 +19,9 @@ print_r($route);
 				array_push($routes,$row);
 			}
 		}	
+
+
+
 		
 	}
 	catch(Exception $e)
@@ -25,7 +30,81 @@ print_r($route);
 	}
 
 ?>
-<!doctype html>
+<!DOCTYPE html>
+<html>
+<title>Dashboard</title>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body> 
+    <input type="checkbox" id="menu">
+    <nav>
+         <label>Mero Sahayatri</label>
+        <ul>
+            <li>
+                <a href="#">Logout</a>
+            </li>
+        </ul>
+         <label for="menu" class="menu-bar"> 
+            <i class="fa fa-bars"></i> 
+        </label>
+    </nav>
+    <div class="side-menu">
+        <center> <img src="car.jpg">
+        <!-- <br><br>-->
+            <h2>Admin Page</h2>
+        </center>
+        <!-- <br>-->
+         <?php require "function/menu.php";?>
+    </div>
+    <div class="data">
+    	<div>
+				<table border="1px">
+					<tr>
+						<th>Name</th>
+						<th>From</th>
+						<th>To</th>
+						<th>Action</th>
+						<th>Checkpoint</th>
+					</tr>
+					<?php foreach($routes as $key => $route) {?>
+					<tr>
+						<td><?php echo $route['Route_id']?></td>
+						<td>
+							<?php 
+								$ro = id_to_name($route,'From_id');
+								echo $ro['Name'];
+							?>
+						</td>
+						<td>
+							<?php
+							 $ro = id_to_name($route,'To_id');
+								echo $ro['Name'];
+							?>
+						</td>
+						<td>
+							<a href="update.php?id=<?php echo $route['Route_id']?>">Update</a>
+							<a href="delete.php?id=<?php echo $route['Route_id']?>">Delete</a>
+						</td>
+						<td>
+							<a href="checkpoint.php?id=<?php echo $route['Route_id']?>">Add</a>
+						</td>
+					</tr>
+				<?php }?> 
+				</table>
+			</div>
+     </div>
+</body>
+
+</html>
+
+
+//purano
+<!-- <!doctype html>
 <html>
 	<head>
 		<title>Vehicles List</title>
@@ -74,19 +153,29 @@ print_r($route);
 					<?php foreach($routes as $key => $route) {?>
 					<tr>
 						<td><?php echo $route['Route_id']?></td>
-						<td><?php echo $route['From_id']?></td>
-						<td><?php echo $route['To_id']?></td>
 						<td>
-							<a href="update.php">Update</a>
-							<a href="delete.php">Delete</a>
+							<?php 
+								$ro = id_to_name($route,'From_id');
+								echo $ro['Name'];
+							?>
 						</td>
 						<td>
-							<a href="checkpoint.php">Add</a>
+							<?php
+							 $ro = id_to_name($route,'To_id');
+								echo $ro['Name'];
+							?>
+						</td>
+						<td>
+							<a href="update.php?id=<?php echo $route['Route_id']?>">Update</a>
+							<a href="delete.php?id=<?php echo $route['Route_id']?>">Delete</a>
+						</td>
+						<td>
+							<a href="checkpoint.php?id=<?php echo $route['Route_id']?>">Add</a>
 						</td>
 					</tr>
-				<?php }?>
+				<?php }?> 
 				</table>
 			</div>
 		</div>
 	</body>
-</html>
+</html> -->
