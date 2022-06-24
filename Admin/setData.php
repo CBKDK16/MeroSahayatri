@@ -8,7 +8,7 @@
 	try
 	{
 		$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
-		$query = "INSERT INTO users values ('$username','$email','$password')";
+		$query = "INSERT INTO users values ('$username','$email','$password',1)";
 		$result = mysqli_query($connection,$query);
 		if($result>0)
 		{

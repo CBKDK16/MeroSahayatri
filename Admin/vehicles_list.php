@@ -103,7 +103,7 @@
 </html>
 
 
-//purano
+<!-- //purano -->
 <!-- <!doctype html>
 <html>
 	<head>

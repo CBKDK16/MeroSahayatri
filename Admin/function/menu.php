@@ -5,4 +5,4 @@
 <a href="vehicles_list.php"><i class="fa fa-bus"></i><span>Vehicle List</span></a>
 <a href="vehicleType.php"><i class="fa fa-train"></i><span>Vehicle Type</span></a>
 <a href="register_admin.php"><i class="fa fa-train"></i><span>Admin</span></a>
-<a href="#" class="Logout"><span>Logout</span></a>
+<a href="logout.php" class="Logout"><span>Logout</span></a>

@@ -1,5 +1,4 @@
 <?php
-	print_r($_POST);
 	//to validate data in vehicle 
 	include 'function/validate.php';
 	require_once 'function/constant.php';
@@ -141,7 +140,7 @@
 
 </html>
 
-//purano
+<!-- purano -->
 <!-- <!doctype html>
 <html>
 	<head>

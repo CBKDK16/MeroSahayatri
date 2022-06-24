@@ -14,7 +14,7 @@
          <label>Mero Sahayatri</label>
         <ul>
             <li>
-                <a href="#">Logout</a>
+                <a href="logout.php">Logout</a>
             </li>
         </ul>
          <label for="menu" class="menu-bar"> 

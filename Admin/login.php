@@ -1,5 +1,23 @@
 <?php
+require "function/constant.php";
+$connection =mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
 
+try{
+	$admins = [];
+	$sql = "select * from admin";
+	$result = mysqli_query($connection,$sql);
+	if(mysqli_num_rows($result)>0)
+	{
+		while($row = mysqli_fetch_assoc($result))
+		{
+			array_push($admins,$row);
+		}
+	}
+}
+catch(Exception $e)
+{
+
+}
 if (isset($_POST['login'])){
 	$err=[];
 
@@ -7,7 +25,7 @@ if (isset($_POST['login'])){
 
 	if (isset($_POST['username']) && !empty($_POST['username']) && trim($_POST['username']))
 	{
-		$username= trim($_POST['username']);
+		$username= $_POST['username'];
 		if (strlen($username) <8){
 			$err['username'] = 'Enter valid length: 8 Character';
 		}
@@ -24,10 +42,27 @@ if (isset($_POST['login'])){
 	}
 	if(count($err)==0)
 	{
-		if($_POST['username']=='manishkhadka' && $_POST['password']=='manish123')
+		$pass = $_POST['password'];
+		$en_password = md5($pass);
+		foreach($admins as $key => $admin)
 		{
-			header('location:dashboard.php');
+			if($_POST['username']==$admin['username'] && $en_password==$admin['PASSWORD'])
+			{
+				session_start();
+				//store extra data into session
+				$_SESSION['username'] =$username;
+
+				//check remember
+				if(isset($_POST['remember']))
+				{
+					//setcookie to store cookie value
+					setcookie('username',$username,time() + (7*24*60*60));
+				}
+				//redirect to defined page
+				header('location:dashboard.php');
+			}
 		}
+		
 	}
 }
 
@@ -38,39 +73,40 @@ if (isset($_POST['login'])){
 <head>
 	
 	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="css/login.css"/>
+	<link rel="stylesheet" type="text/css" href="css/logincss.css"/>
 </head>
 <body>
-	<h1>Hello,</h1>
-	<h2>Sign to Continue...</h2>
-	<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>" >
-		<div class="new">
-			<div>
-				<label>Username:</label>
-				<input type="text" name="username" placeholder="Enter Your Username" value="<?php echo isset ($username)? $username:''; ?>">
-				<?php if (isset($err['username']))
-				{
-					echo $err['username'];
-				} ?>
+	<div id = "block">
+		<h1 align="center">Hello,</h1>
+		<h2 align="center">Sign to Continue...</h2>
+		<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+			<div class="new">
+				<div class="input">
+					<label>Username:</label>
+					<input type="text" name="username" placeholder="Enter Your Username" value="<?php echo isset ($username)? $username:''; ?>">
+					<?php if (isset($err['username']))
+					{
+						echo $err['username'];
+					} ?>
+				</div>
+				<div class="input">
+					<label>Password:</label>
+					<input type="Password" name="password" placeholder="Enter your Password">
+					<?php if (isset($err['password']))
+					{
+						echo $err['password'];
+					}
+					?>
+				</div>
+				<div id= "remember">
+					<input type="checkbox" name="remember" value="remember">Remember me<br/>
+				</div>
+				<div>
+					<button type="submit" name="login">Login</button>
+				</div>
 			</div>
-			<div>
-				<label>Password:</label>
-				<input type="Password" name="password" placeholder="Enter your Password">
-				<?php if (isset($err['password']))
-				{
-					echo $err['password'];
-				}
-				?>
-			</div>
-			<div>
-				<input type="checkbox" name="remember" value="remember">Remember me<br/>
-			</div>
-			<div>
-				<button type="submit" name="login">Login</button>
-			</div>
-		</div>
-		
-	</form>
-
+			
+		</form>
+	</div>
 </body>
 </html>

@@ -97,7 +97,7 @@ public class login extends AppCompatActivity {
 
     }
     public void volleyrequest() {
-        String url = "http://192.168.0.110/merosahayatri/Admin/getdata.php";
+        String url = "http://192.168.0.109/merosahayatri/Admin/getdata.php";
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(this);
 

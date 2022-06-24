@@ -91,7 +91,7 @@ public class register extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                String url = "http://192.168.0.110/merosahayatri/Admin/setData.php";
+                String url = "http://192.168.0.109/merosahayatri/Admin/setData.php";
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>() {
                             @Override

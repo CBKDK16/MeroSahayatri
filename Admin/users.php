@@ -2,7 +2,7 @@
 	$users =[];
 	require_once 'function/constant.php';
 	$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
-	$select = "SELECT * from users";
+	$select = "SELECT * from users_tbl";
 	$result = mysqli_query($connection,$select);
 	if(mysqli_num_rows($result)>0)
 	{
@@ -54,17 +54,26 @@
 						<th>Id</th>
 						<th>Username</th>
 						<th>Email</th>
-						<th>Status</th>
 						<th>Action</th>
 					</tr>
 					<?php foreach($users as $key => $user) {?>
-					<tr>
+					<tr align="center">
 						<td><?php echo $key+1?></td>
 						<td><?php echo $user['username']?></td>
 						<td><?php echo $user['email']?></td>
-						<td>1</td>
 						<td>
-							<a href="action.php">Activated</a>
+							<?php 
+								$action = $user['status'];
+								if($action == 1)
+								{
+									echo "<p><a href='action.php?id=".$user['id']."&status=0'>Enable</a></p>";
+								}
+								else
+								{
+									echo "<a href='action.php?id=".$user['id']."&status=1'>Diable</a>";
+								}
+							?>
+							
 						</td>
 					</tr>
 				<?php }?>
