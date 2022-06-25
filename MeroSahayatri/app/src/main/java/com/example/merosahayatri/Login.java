@@ -114,7 +114,7 @@ public class login extends AppCompatActivity {
                                     if(username1.equals(obj.getString("username")) && password1.equals(obj.getString("password")))
                                     {
                                         Toast.makeText(login.this, "Sign in Successfully", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
+                                        Intent intent = new Intent(getApplicationContext(), com.example.merosahayatri.MapsActivity.class);
                                         startActivity(intent);
                                     }
                                 }

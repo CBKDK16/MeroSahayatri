@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.merosahayatri">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
         tools:ignore="CoarseFineLocation" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -28,7 +29,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDgtedUK5CsznyjhfKo9hPwtk_QPTsI0wc" />
+            android:value="YOUR_API_KEY" />
 
         <activity
             android:name=".MapsActivity"

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2022 at 12:57 PM
+-- Generation Time: Jun 25, 2022 at 04:40 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.0
 
@@ -64,7 +64,12 @@ CREATE TABLE `checkpoint_tbl` (
 --
 
 INSERT INTO `checkpoint_tbl` (`CHECKPOINT_id`, `route_id`, `location_id`) VALUES
-(37, 13, 187);
+(37, 13, 187),
+(38, 13, 184),
+(39, 13, 200),
+(40, 14, 184),
+(41, 14, 187),
+(42, 14, 200);
 
 -- --------------------------------------------------------
 
@@ -116,6 +121,36 @@ INSERT INTO `routes_tbl` (`Route_id`, `Vehicle_id`, `From_id`, `To_id`, `Distanc
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `username` varchar(10) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `PASSWORD` varchar(200) NOT NULL,
+  `gender` char(4) NOT NULL,
+  `country` varchar(25) NOT NULL,
+  `phone` int(11) NOT NULL,
+  `image` text NOT NULL,
+  `status` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `username`, `email`, `PASSWORD`, `gender`, `country`, `phone`, `image`, `status`) VALUES
+(1, 'manish', 'manishkha', 'manish@gmail.com', '392cbd9d8a28cf9be1a9941e55e650f2', 'M', 'nepal', 2147483647, 'IMG-62b71042081434.44617458.jpg', 0),
+(2, 'manish', 'manishkhad', 'manish@gmail.com', '392cbd9d8a28cf9be1a9941e55e650f2', 'M', 'nepal', 2147483647, 'IMG-62b710695839a9.72585774.jpg', 0),
+(3, 'Sajha', 'ramkrishna', 'manish@gmail.com', '392cbd9d8a28cf9be1a9941e55e650f2', 'M', 'india', 2147483647, 'IMG-62b7121f14ef17.52323846.jpg', 0),
+(9, 'manishkhadkaa', 'qwertyuio', 'domainapple123@gmail.com', '392cbd9d8a28cf9be1a9941e55e650f2', 'M', 'china', 2147483647, 'IMG-62b7133c5e0d16.16027695.jpg', 1),
+(10, 'manishkhadkaa', 'asdfghjkl', 'domainapple123@gmail.com', '392cbd9d8a28cf9be1a9941e55e650f2', 'M', 'india', 2147483647, 'IMG-62b71465ab87b1.95256885.jpg', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -161,7 +196,7 @@ CREATE TABLE `users_tbl` (
 --
 
 INSERT INTO `users_tbl` (`id`, `username`, `email`, `password`, `status`) VALUES
-(1, 'manish', 'manish', 'manish', 1),
+(1, 'manish', 'manish', 'manish', 0),
 (2, 'anish', 'anish', 'anish', 1);
 
 -- --------------------------------------------------------
@@ -218,6 +253,13 @@ ALTER TABLE `routes_tbl`
   ADD KEY `fk_tolocation` (`To_id`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -244,7 +286,7 @@ ALTER TABLE `vehicletype_tbl`
 -- AUTO_INCREMENT for table `checkpoint_tbl`
 --
 ALTER TABLE `checkpoint_tbl`
-  MODIFY `CHECKPOINT_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `CHECKPOINT_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `location_tbl`
@@ -257,6 +299,12 @@ ALTER TABLE `location_tbl`
 --
 ALTER TABLE `routes_tbl`
   MODIFY `Route_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users_tbl`
