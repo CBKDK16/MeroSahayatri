@@ -1,7 +1,13 @@
 <?php
 require "function/constant.php";
 $connection =mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
-
+$message = [];
+if(isset($_COOKIE['username']))
+{
+	session_start();
+	$_SESSION['username'] = $_COOKIE['username'];
+	header('location:dashboard.php');
+}
 try{
 	$admins = [];
 	$sql = "select * from admin";
@@ -46,27 +52,47 @@ if (isset($_POST['login'])){
 		$en_password = md5($pass);
 		foreach($admins as $key => $admin)
 		{
-			if($_POST['username']==$admin['username'] && $en_password==$admin['PASSWORD'])
+			if($_POST['username']==$admin['username'])
 			{
-				session_start();
-				//store extra data into session
-				$_SESSION['username'] =$username;
-
-				//check remember
-				if(isset($_POST['remember']))
+				if( $en_password==$admin['PASSWORD'])
 				{
-					//setcookie to store cookie value
-					setcookie('username',$username,time() + (7*24*60*60));
+					session_start();
+					//store extra data into session
+					$_SESSION['username'] =$username;
+					$_SESSION['image'] = $admin['image'];
+
+					//check remember
+					if(isset($_POST['remember']))
+					{
+						//setcookie to store cookie value
+						setcookie('username',$username,time() + (7*24*60*60));
+					}
+					//redirect to defined page
+					header('location:dashboard.php');
 				}
-				//redirect to defined page
-				header('location:dashboard.php');
+				else{
+					$error['password'] = "Invalid Password.";
+				}
+				
+			}
+			else
+			{
+				$error['username'] = "Invalid username.";
 			}
 		}
+		$message['login'] = "Login failed!";
 		
 	}
 }
 
-
+if(isset($_GET['msg']) && $_GET['msg'] == 1)
+{
+	$message['msg'] = 'Please login to continue to dashboard.';
+}
+if(isset($_GET['msg']) && $_GET['msg'] == 2)
+{
+	$message['logout'] = 'Logout success.';
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -79,6 +105,17 @@ if (isset($_POST['login'])){
 	<div id = "block">
 		<h1 align="center">Hello,</h1>
 		<h2 align="center">Sign to Continue...</h2>
+		<div align="center">
+					<?php 
+						if(isset($message))
+						{
+							foreach($message as $value){
+								echo $value;
+							}
+							
+						}
+					?>
+		</div>
 		<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
 			<div class="new">
 				<div class="input">
@@ -104,6 +141,7 @@ if (isset($_POST['login'])){
 				<div>
 					<button type="submit" name="login">Login</button>
 				</div>
+				
 			</div>
 			
 		</form>

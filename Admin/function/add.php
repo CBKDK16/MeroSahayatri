@@ -52,6 +52,7 @@
 				<option value="<?php echo $type['Vehicle_id']; ?>"><?php echo $type['Type']; ?></option>
 				<?php } ?>
 			</select>
+			<?php echo displayError($error,'type');?>
 		</div>
 	</div>
 
@@ -69,6 +70,7 @@
 				<option value="<?php echo $location['Location_id']; ?>"><?php echo $location['Name']; ?></option>
 				<?php } ?>
 			</select>
+			<?php echo displayError($error,'fromlocation');?>
 		</div>
 	</div>
 
@@ -86,6 +88,7 @@
 				<option value="<?php echo $location['Location_id']; ?>"><?php echo $location['Name']; ?></option>
 				<?php } ?>
 			</select>
+			<?php echo displayError($error,'tolocation');?>
 		</div>
 	</div>
 
@@ -96,18 +99,21 @@
 		<hr/>
 		<div>
 			<label for="fare">Fare</label>
-			<input type="number" name="fare" value="<?php echo $fare?>"/>
+			<input type="number" name="fare" placeholder="eg.50" value="<?php echo isset($fare)?$fare:''; ?>"/>
 			<?php echo displayError($error,'fare');?>
 		</div>
 		<div>
 			<label for="timeinterval">Time Interval</label>
-			<input type="text" name="timeinterval" value="<?php echo $timeinterval ?>"/>
-			<?php echo displayError($error,'timeinterval');?>
+			<input type="text" name="timeinterval" placeholder="eg.Every 10min" value="<?php echo $timeinterval ?>"/>
+			<?php 
+				if(isset($error['timeinterval']))
+					echo displayError($error,'timeinterval');
+			?>
 		</div>
 		<div>
 			<label for="available">Available</label>
 			<input type="text" name="available"
-			value="<?php echo $available?>" />
+			placeholder="eg.6am to 7pm" value="<?php echo $available?>" />
 			<?php echo displayError($error,'available');?> 
 		</div>
 	</div>

@@ -14,8 +14,9 @@ body {
 
 .data {
     padding: 20px;
-    color: white;
-    background: url(https://drive.google.com/uc?export=view&id=1xu0Nu4Ve4z3n66wDDZmraUxZPNrllhmL);
+    color: blueviolet;
+    background-image: url('img/background.jpg');
+    background-color: lightseagreen;
     height: 100vh;
     width: 100vw;
     margin-left: 250px;

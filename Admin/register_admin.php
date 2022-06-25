@@ -1,4 +1,5 @@
 <?php
+	require_once 'function/check_session.php';
 	require 'function/constant.php';
 	require 'function/validate.php';
 	$error = [];
@@ -220,7 +221,7 @@
          <label>Mero Sahayatri</label>
         <ul>
             <li>
-                <a href="#">Logout</a>
+                <a href="logout.php">Logout</a>
             </li>
         </ul>
          <label for="menu" class="menu-bar"> 
@@ -228,9 +229,14 @@
         </label>
     </nav>
     <div class="side-menu">
-        <center> <img src="car.jpg">
+        <center> 
+        	<img src="img/<?=$_SESSION['image']?>">
         <!-- <br><br>-->
-            <h2>Admin Page</h2>
+            <h2>
+                <?php
+                    echo $_SESSION['username'];
+                ?>
+            </h2>
         </center>
         <!-- <br>-->
          <?php require "function/menu.php";?>

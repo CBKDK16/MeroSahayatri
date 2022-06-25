@@ -1,5 +1,5 @@
 <?php
-
+	require_once 'function/check_session.php';
 	require 'function/constant.php';
 	
 	$error = [];
@@ -19,10 +19,6 @@
 				array_push($routes,$row);
 			}
 		}	
-
-
-
-		
 	}
 	catch(Exception $e)
 	{
@@ -36,7 +32,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/all.css">
+    <link rel="stylesheet" type="text/css" href="css/all.css?v=<?php echo time();?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -46,7 +42,7 @@
          <label>Mero Sahayatri</label>
         <ul>
             <li>
-                <a href="#">Logout</a>
+                <a href="logout.php">Logout</a>
             </li>
         </ul>
          <label for="menu" class="menu-bar"> 
@@ -54,14 +50,22 @@
         </label>
     </nav>
     <div class="side-menu">
-        <center> <img src="car.jpg">
+        <center> 
+        	<img src="img/<?=$_SESSION['image']?>">
         <!-- <br><br>-->
-            <h2>Admin Page</h2>
+            <h2>
+                <?php
+                    echo $_SESSION['username'];
+                ?>
+            </h2>
         </center>
         <!-- <br>-->
          <?php require "function/menu.php";?>
     </div>
     <div class="data">
+    	<div>
+				<h2>Vechicles List</h2>
+		</div>
     	<div>
 				<table border="1px">
 					<tr>
@@ -88,7 +92,7 @@
 						</td>
 						<td>
 							<a href="update.php?id=<?php echo $route['Route_id']?>">Update</a>
-							<a href="delete.php?id=<?php echo $route['Route_id']?>">Delete</a>
+							<a href="delete.php?id=<?php echo $route['Route_id']?>" onclick="return confirm('Are you sure to delete?')">Delete</a>
 						</td>
 						<td>
 							<a href="checkpoint.php?id=<?php echo $route['Route_id']?>">Add</a>
