@@ -90,7 +90,7 @@
 ?>
 <!DOCTYPE html>
 <html>
-<title>Dashboard</title>
+<title>Route</title>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -101,7 +101,7 @@
 <body> 
     <input type="checkbox" id="menu">
     <nav>
-         <label>Mero Sahayatri</label>
+         <label id="header">Mero Sahayatri - Admin</label>
         <ul>
             <li>
                 <a href="logout.php">Logout</a>
@@ -127,7 +127,7 @@
     <div class="data">
     	<div>
 				<h2>
-					Vehicle
+					Route
 					<?php if(isset($successmsg))
 					{
 						echo "  -  " .$successmsg ;

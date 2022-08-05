@@ -186,7 +186,7 @@ echo "</pre>";
      			<?php
 	        		if(isset($error['search']))
 	        		{
-	        			echo "<h2 align='center'>". $error['search']."</h2>";
+	        			echo "<h2 align='center' id='error'>". $error['search']."</h2>";
 	        		} 
 	        	?>
 			<div id="items">
@@ -194,89 +194,83 @@ echo "</pre>";
 				<div id="" class="item">
 					<div class="front">
 						<div class="front-img">
-							<table border="1px" align="center">
-					<tr>
-						<th>
-							S.no.:
-						</th>
-						<td>
-							<?php echo $key+1?>	
-						</td>
-					</tr>
-					<tr>
-						<th>From</th>	
-						<td>
-							<?php 
-								$ro = id_to_name($route,'From_id');
-								echo $ro['Name'];
-							?>
-						</td>
-					</tr>
-					<tr>
-						<th>To</th>
-						<td>
-							<?php
-							 $ro = id_to_name($route,'To_id');
-								echo $ro['Name'];
-							?>
-						</td>
-					</tr>
-					<tr>
-						<th>Time Interval</th>
-						<td>
-							<?php
-								echo $route['Duration'];
-							?>
-						</td>
-					</tr>
-					<tr>
-						<th>Fare</th>
-						<td>
-							<?php
-								echo $route['Fare'];
-							?>
-						</td>
-					</tr>
-					<tr>
-						<th>Available</th>
-						<td>
-							<?php
-								echo $route['Available'];
-								$id = $route['Route_id'];
-							?>
-						</td>
-					</tr>
-				 
-				</table>
+							<table border="0px" cellpadding="200px">
+								<tr align="left">
+									<th class="padding_top">
+										From:
+									</th>
+									<th class="padding_top">
+										To:	
+									</th>
+								</tr>
+								<tr align="center">	
+									<td class="padding_bottom">
+										<?php 
+											$ro = id_to_name($route,'From_id');
+											echo $ro['Name'];
+										?>
+									</td>
+									<td class="padding_bottom">
+										<?php
+										 $ro = id_to_name($route,'To_id');
+											echo $ro['Name'];
+										?>
+									</td>
+								</tr>
+								
+								<tr>
+									<th align="left" class="padding_details">Time Interval: </th>
+									<td class="padding_details">
+										<?php
+											echo $route['Duration'];
+										?>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" class="padding_details">Fare: </th>
+									<td class="padding_details">
+										<?php
+											echo $route['Fare'];
+										?>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" class="padding_details">Available: </th>
+									<td class="padding_details">
+										<?php
+											echo $route['Available'];
+											$id = $route['Route_id'];
+										?>
+									</td>
+								</tr>
+							 
+							</table>
 						</div>
 						<div>
 							<h3>Route <?php echo $key+1?></h3>
 						</div>
 					</div>
 					<div class="back">
-						<h3>Route - Checkpoint</h3>
+						<h3>Route - Checkpoints</h3>
 						<div id="table_list">
-						<table border="1px">
-							<tr>
-								<td>S.N</td>
-								<td>Name</td>
-								<td>Longitude </td>
-								<td>Latitude</td>
+						<table border="1px" cellspacing="0" cellpadding="10px" id="table_checkpoint">
+							<tr bgcolor="#131e48" id="checkpoint_header">
+								<!-- <td>S.N</td> -->
+								<td class="padding_checkpoint">Name</td>
+								<td class="padding_checkpoint">Longitude </td>
+								<td class="padding_checkpoint">Latitude</td>
 							</tr>
 							<?php 
 							require "function/checkpoint.php";
 							foreach ($checkpoint as $key => $cp) {?>
 							<tr>
-								<td>
-									<?php echo $key+1?>
-								</td>
-								<td>
+								<td class="padding_checkpoint">
 									<?php echo $cp['Name']?>
 								</td>
-								<td>
+								<td class="padding_checkpoint">
 									<?php echo $cp['Longitute']?>
 								</td>
-								<td>
+								<td class="padding_checkpoint">
 									<?php echo $cp['Latitude']?>
 								</td>
 							</tr>

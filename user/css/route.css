@@ -40,6 +40,9 @@ body{
 	justify-content: center;
 	text-align: center;
 }
+#error{
+	margin: 40px;
+}
 #about{
 	width: 80%;
 }
@@ -88,6 +91,7 @@ body{
 	height:100%;
 	backface-visibility: hidden;
 	transform: rotateY(180deg);
+
 }
 .item img{
 	margin: 7%;
@@ -102,6 +106,7 @@ body{
 	width: 100%;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 }
 .back h3{
 	margin: 20px;
@@ -110,7 +115,32 @@ body{
 	margin: 0 20px;
 	text-align: justify;
 }
+#table_checkpoint{
+	font-size: 13px;
+	border: 10px solid transparent;
+}
+#checkpoint_header{
+	color: white;
+}
+.padding_top{
+	padding-top: 10px;
+}
+.padding_bottom{
+	padding-bottom: 10px;
+}
+.padding_details{
+	padding: 10px 10px 0px 0px;
+}
 
+.padding_checkpoint{
+	padding: 5px;
+}
+
+#table_list{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
 @media only screen and (max-width: 810px)
 {

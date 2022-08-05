@@ -12,7 +12,7 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-.data {
+.data { 
     padding: 20px;
     color: blueviolet;
     background-image: url('img/background.jpg');
@@ -33,14 +33,7 @@ nav {
     width: 100%;
 }
 
-label {
-    line-height: 80px;
-    font-size: 30px;
-    color: white;
-    font-weight: 200;
-    margin-left: 50px;
-    cursor: pointer;
-}
+
 
 nav ul {
     float: right;
@@ -86,7 +79,14 @@ nav ul li a:hover {
 .side-menu center h2 {
     color: white;
 }
-
+#header {
+    line-height: 80px;
+    font-size: 30px;
+    color: white;
+    font-weight: 200;
+    margin-left: 50px;
+    cursor: pointer;
+}
 .side-menu a {
     display: block;
     line-height: 60px;

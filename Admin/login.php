@@ -6,7 +6,7 @@ if(isset($_COOKIE['username']))
 {
 	session_start();
 	$_SESSION['username'] = $_COOKIE['username'];
-	header('location:dashboard.php');
+	header('location:users.php');
 }
 try{
 	$admins = [];
@@ -68,7 +68,7 @@ if (isset($_POST['login'])){
 						setcookie('username',$username,time() + (7*24*60*60));
 					}
 					//redirect to defined page
-					header('location:dashboard.php');
+					header('location:users.php');
 				}
 				else{
 					$error['password'] = "Invalid Password.";
