@@ -77,9 +77,9 @@
 				$sql = "insert into routes_tbl(Vehicle_id,From_id,To_id,Fare,duration,Available)values('$type','$fromlocation','$tolocation','$fare','$timeinterval','$available')";
 				if(mysqli_query($connection,$sql))
 				{
+					header('location:vehicle.php');
 					$successmsg = 'Vehicle Added Sucessfully';
 				}
-
 			}
 			catch(Exception $e)
 			{

@@ -1,22 +1,68 @@
 <?php
+echo "<pre>";
 	require_once 'function/check_session.php';
 	require 'function/constant.php';
 	
 	$routes = [];
-	$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+	$route = [];
+	$searchs = [];
+	$str = "";
 	require 'function/id_to_name.php';
 	try
 	{
-		$select = "SELECT * FROM routes_tbl";
-		$result = mysqli_query($connection,$select);
-					
-		if(mysqli_num_rows($result)>0)
+		if(isset($_POST['enter']))
 		{
-			while($row = mysqli_fetch_assoc($result))
+			if(!$_POST['search'] == NULL){
+			$str = $_POST['search'];
+			$search = "SELECT * from location_tbl where Name like '".$str."%' ";
+			$execute = mysqli_query($con,$search);
+			if(mysqli_num_rows($execute)>0)
 			{
-				array_push($routes,$row);
+				while($row2 = mysqli_fetch_assoc($execute))
+				{
+					array_push($searchs,$row2);
+				}
+				// print_r($searchs);
+
+				foreach($searchs as $key => $values)
+				{
+					$id = $values['Location_id'];
+					$select = "SELECT * from checkpoint_tbl where location_id = $id";
+					$checkpoint_query = mysqli_query($con,$select);
+					if(mysqli_num_rows($checkpoint_query)>0)
+					{
+						while($rowa = mysqli_fetch_assoc($checkpoint_query))
+						{
+							array_push($route,$rowa);
+							
+						}
+					}
+				}
+				// print_r($route);
+				foreach($route as $key => $route)
+				{
+					$route_id = $route['route_id'];						 
+					$select = "SELECT * FROM routes_tbl where Route_id = $route_id";
+					$result = mysqli_query($con,$select);
+					if(mysqli_num_rows($result)>0)
+					{
+						$row = mysqli_fetch_assoc($result);
+						array_push($routes,$row);
+					}
+				}
+				sort($routes);
+				// print_r($routes);
 			}
-		}	
+			else
+			{
+				$error['search'] = "no data found";
+			}
+			}
+			else
+			{
+				$error['search'] = "Please enter location you want.";
+			}
+		}
 	}
 	catch(Exception $e)
 	{
@@ -25,7 +71,7 @@
 
 
 	
-
+echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,6 +106,12 @@
                 <a href="logout.php">Logout</a>
             </li>
         </ul>
+        <div class="side-menu">
+	        <form method="post" action="<?php echo $_SERVER['PHP_SELF']  ?>">
+	        	<input type="text" name="search" id="search" value="<?php echo $str?>" placeholder="Search here....">
+	        	<input type="submit" name="enter" value="Search">
+	        </form>
+	    </div>
          <label for="menu" class="menu-bar"> 
             <i class="fa fa-bars"></i> 
         </label>
@@ -131,6 +183,12 @@
 			</div>
      </div> -->
      <div id="container">
+     			<?php
+	        		if(isset($error['search']))
+	        		{
+	        			echo "<h2 align='center'>". $error['search']."</h2>";
+	        		} 
+	        	?>
 			<div id="items">
 				<?php foreach($routes as $key => $route) {?>
 				<div id="" class="item">

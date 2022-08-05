@@ -1,5 +1,5 @@
 <?php
-	$id = $_GET['id'];
+	$cid = $_GET['id'];
 	require_once 'function/check_session.php';
 	require 'function/constant.php';
 	require 'function/validate.php';
@@ -27,7 +27,7 @@
 
 
 		//grab data from database of checkpoint_tbl
-		$sql_checkpoint = "select * from checkpoint_tbl c1 Inner join location_tbl using(location_id) where route_id = $id";
+		$sql_checkpoint = "select * from checkpoint_tbl c1 Inner join location_tbl using(location_id) where route_id = $cid";
 		//execute query
 		$result_checkpoint = mysqli_query($connect,$sql_checkpoint);
 		//check the no. of rows available in database
@@ -61,9 +61,10 @@
 			//insert into database
 			try{
 				//insert into table query
-				$sql = "insert into checkpoint_tbl(route_id,location_id)values($id,'$checkpointlocation')";
+				$sql = "insert into checkpoint_tbl(route_id,location_id)values($cid,'$checkpointlocation')";
 				//query execution
 				$result = mysqli_query($connect,$sql);
+				header('location:checkpoint.php?id='.$cid);
 				
 			}catch(Exception $e){
 
@@ -71,108 +72,7 @@
 		}
 	}
 ?>
-<!-- <!doctype html>
-<html>
-	<head>
-		<title>Vehicles</title>
 
-		<style>
-			#back{
-				background-image: url('img/background.jpg');
-				height: 750px;
-			}
-			a{
-				color: #fff;
-			}
-			h1{
-				color: #fff;
-			}
-			div{
-				margin: 5px 0px 0px 10px;
-			}
-			
-			#addvehicleform{
-				margin: 30px;
-				background-color:#fff ;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="back">
-			<div>
-				<img src="img/logo.jpg"/>
-			</div>
-			<div>
-				<?php require_once 'function/menu.php' ?>
-			</div>
-			<div>
-				<h1>Hey Admin Name</h1>
-			</div>
-			<div>
-				<h2>Vehicle - Checkpoint</h2>
-			</div>
-			<div id="addvehicleform">
-				<form method="post" action="<?php echo $_SERVER['PHP_SELF']?>?id=<?php echo $id?>">
-					<div>
-						<div>
-							<label for="checkpoint">Checkpoint</label>
-						</div>
-						<hr/>
-						<div>
-							<label for="location">Location</label>
-							<select name= "checkpointlocation" id="checkpointlocation">
-								<option value="">Select location</option>
-								<?php 
-									foreach($locations as $location){?>
-										<option value = "<?php echo $location['Location_id'];?>"><?php echo $location['Name'];?>
-								</option>
-							<?php } ?>
-							</select>
-							<?php echo displayError($error,'checkpointlocation');?>
-						</div>
-					</div>
-				
-					<br/>
-					<input type="submit" value="Add" name="addcheckpoint"/>
-					<input type="submit" value="Delete" name="deletecheckpoint"/>
-					</div>
-					<div id="table_list">
-						<table border="1px">
-							<tr>
-								<td>S.N</td>
-								<td>Name</td>
-								<td>Longitude </td>
-								<td>Latitude</td>
-								<td>Action</td>
-							</tr>
-							<?php foreach ($checkpoint as $key => $cp) {?>
-							<tr>
-								<td>
-									<?php echo $key+1?>
-								</td>
-								<td>
-									<?php echo $cp['Name']?>
-								</td>
-								<td>
-									<?php echo $cp['Longitute']?>
-								</td>
-								<td>
-									<?php echo $cp['Latitude']?>
-								</td>
-								<td>
-									<a href="delete_checkpoint.php?id=<?php echo $cp['CHECKPOINT_id']?>">Delete</a>
-								</td>
-							</tr>
-							<?php }?>
-						</table>
-					</div>
-				</form>	
-			
-			
-		</div>
-	</body>
-</html>
- -->
 <!DOCTYPE html>
 <html>
 <title>Dashboard</title>
@@ -213,7 +113,7 @@
 				<h2>Vehicle - Checkpoint</h2>
 			</div>
 			<div id="addvehicleform">
-				<form method="post" action="<?php echo $_SERVER['PHP_SELF']?>?id=<?php echo $id?>">
+				<form method="post" action="<?php echo $_SERVER['PHP_SELF']?>?id=<?php echo $cid?>">
 					<div>
 						<div>
 							<label for="checkpoint">Checkpoint</label>
@@ -260,7 +160,7 @@
 									<?php echo $cp['Latitude']?>
 								</td>
 								<td>
-									<a href="delete_checkpoint.php?id=<?php echo $cp['CHECKPOINT_id']?>">Delete</a>
+									<a href="delete_checkpoint.php?id=<?php echo $cp['CHECKPOINT_id']?>&cid=<?php echo $cid?>" onclick="return confirm('Are you sure to delete?')">Delete</a>
 								</td>
 							</tr>
 							<?php }?>

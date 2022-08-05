@@ -109,7 +109,7 @@ if(isset($_GET['msg']) && $_GET['msg'] == 3)
 <head>
 	
 	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="css/logincss.css"/>
+	<link rel="stylesheet" type="text/css" href="css/logincss.css?v=<?php echo time();?>"/>
 </head>
 <body>
 	<div id = "block">

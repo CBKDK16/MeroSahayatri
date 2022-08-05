@@ -1,4 +1,5 @@
 <?php
+
 	require_once'function/check_session.php';
 	require_once'function/constant.php';
 	$locations = [];
@@ -46,10 +47,12 @@
 					$sql = "INSERT INTO vehicletype_tbl(Type)
 					values('$vname')";
 					$result1 = mysqli_query($connection,$sql);
+					print_r($_POST);
 				// query execution
 				if($result1)
 				{
-					$successmsg="location add successfully";
+					$successmsg="Vehicle add successfully";
+					header("location:VehicleType.php");
 				}
 			}
 			catch(Exception $e)
@@ -99,7 +102,15 @@
     	<div>
 				<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
 					<div class="vehicle">
-						<label>Vehicle Type</label>
+						<label>
+							Vehicle Type
+							<?php
+								if(isset($successmsg))
+								{
+									echo " - ". $successmsg;
+								}
+							?>
+						</label>
 						<br>
 						<input type="text" name="vname">
 						<?php if(isset($err['vname']))
@@ -125,6 +136,9 @@
 						<tr>
 							<td><?php echo $location['Vehicle_id']?></td>
 							<td><?php echo $location['Type']?></td>
+							<td>
+								<a href="delete_vehicleType.php?id=<?php echo $location['Vehicle_id']?>" onclick="return confirm('Are you sure to delete?')">Delete</a>
+							</td>
 						</tr>
 					<?php } ?>
 					</table>
@@ -136,69 +150,3 @@
 
 
 
-//purano
-<!-- <!doctype html>
-<html>
-	<head>
-		<title>Dashboard</title>
-		<style>
-			#back{
-				background-image: url('img/background.jpg');
-				height: 750px;
-			}
-			a{
-				color: #fff;
-			}
-			h1{
-				color: #fff;
-			}
-			
-		</style>
-	</head>
-	<body>
-		<div id="back">
-			<div>
-				<img src="img/logo.jpg"/>
-			</div>
-			<div>
-				<?php require_once 'function/menu.php' ?>
-			</div>
-			<div>
-				<h1>Hey Admin Name</h1>
-			</div>
-			<div>
-				<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
-					<div class="vehicle">
-						<label>Vehicle Type</label>
-						<br>
-						<input type="text" name="vname">
-						<?php if(isset($err['vname']))
-						{
-							echo $err['vname'];
-						}
-						?>
-					</div>
-						<br>
-					<div>
-						<button type="submit" name="add">Add</button>
-					</div>
-				</form>
-			</div>
-			<div>
-					<table>
-						<tr>
-							<th>id</th>
-							<th>type</th>
-						</tr>
-						<?php foreach($locations as $key => $location) {?>
-
-						<tr>
-							<td><?php echo $location['Vehicle_id']?></td>
-							<td><?php echo $location['Type']?></td>
-						</tr>
-					<?php } ?>
-					</table>
-			</div>
-		</div>
-	</body>
-</html> -->

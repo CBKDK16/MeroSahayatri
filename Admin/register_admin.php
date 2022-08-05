@@ -8,15 +8,15 @@
 	$name = $username =$repassword = $password = $gender = $country = $phone = $image = $email = '';
 
 	try{
-		// $sql_admin = "select username from admin";
-		// $result = mysqli_query($connection,$sql_admin);
-		// $username_db = [];
-		// if(mysqli_num_rows($result)>0)
-		// {
-		// 	while ($row = mysqli_fetch_assoc($result)) {
-		// 		array_push($username_db,$row);
-		// 	}
-		// }
+		$sql_admin = "select username from admin";
+		$result = mysqli_query($connection,$sql_admin);
+		$username_db = [];
+		if(mysqli_num_rows($result)>0)
+		{
+			while ($row = mysqli_fetch_assoc($result)) {
+				array_push($username_db,$row);
+			}
+		}
 
 	}
 	catch(Exception $e)
@@ -46,13 +46,13 @@
 			}
 			else
 			{
-			// 	foreach($username_db as $key => $user)
-			// 	{
-			// 		if($user['username'] == $username)
-			// 		{
-			// 			$error['username'] = "Username already taken";
-			// 		}
-			// 	}
+				foreach($username_db as $key => $user)
+				{
+					if($user['username'] == $username)
+					{
+						$error['username'] = "Username already taken";
+					}
+				}
 			}
 		}
 		else
@@ -195,7 +195,7 @@
 				}
 				catch(Exception $e)
 				{
-					die('Database error:- '.$e->getMessage());
+					header("location:register_admin.php");
 				}
 			}
 		}

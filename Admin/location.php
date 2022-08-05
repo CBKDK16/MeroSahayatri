@@ -36,7 +36,12 @@
 		if(requireValidation($_POST,'longitude'))
 		{
 			$longitude = $_POST['longitude'];
-
+			
+			foreach($locations as $key => $location)
+			{
+				if($location['Longitute'] == $longitude)
+					$error['longitude'] = 'longitude already exist';
+			}
 		}
 		else
 		{
@@ -46,6 +51,12 @@
 		if(requireValidation($_POST,'latitude'))
 		{
 			$latitude = $_POST['latitude'];
+
+			foreach($locations as $key => $location)
+			{
+				if($location['Latitude'] == $latitude)
+					$error['latitude'] = 'latitude already exist';
+			}
 		}
 		else
 		{
@@ -113,14 +124,15 @@
          <?php require "function/menu.php";?>
     </div>
     <div class="data">
-    	<div>
-				<?php if(isset($successmsg)){?>
-					<p class = "success" ><?php echo $successmsg ?></p>
-				<?php }?>
-			</div>
+    		
 			<div>
 				<div>
-					<h2>Location</h2>
+					<h2>
+						Location
+							<?php if(isset($successmsg)){?>
+								<?php echo " - " .$successmsg ?>
+							<?php }?>
+					</h2>
 				</div>
 				<hr/>
 				<div style="background:grey;">
@@ -158,6 +170,7 @@
 							<th>Name</th>
 							<th>Longitude</th>
 							<th>latitude</th>
+							<th>Action</th>
 						</tr>
 						<?php foreach($locations as $key => $location) {?>
 
@@ -166,6 +179,7 @@
 							<td><?php echo $location['Name']?></td>
 							<td><?php echo $location['Longitute']?></td>
 							<td><?php echo $location['Latitude']?></td>
+							<td><a href="delete_location.php?id=<?php echo $location['Location_id'] ?>" onclick="return confirm('Are you sure to delete?')">Delete</a></td>
 						</tr>
 					<?php } ?>
 					</table>
@@ -176,145 +190,3 @@
 
 </html>
 
-//purano
-<!-- <!DOCTYPE html>
-<html>
-	<head>
-		<title>Vehicles</title>
-		<style>
-			*{
-				
-				box-sizing;border-box;
-			}
-			body{
-				overflow: hidden;
-				color: white;
-			}
-			.background
-			{
-				width: 100%;
-				position: fixed;
-				bottom: 0;
-				left: 0;
-				height: 100%;
-				z-index: -1;
-			}
-			#back{
-				/*background-image: url('img/background.jpg');*/
-				height: 750px;
-			}
-			a{
-				color: #fff;
-			}
-			h1{
-				color: #fff;
-			}
-			
-		</style>
-		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/dist/jquery.validate.min.js"></script>
-
-		<!-- <script type="text/javascript">
-			//event propragration in jquery validation
-			$(document).ready(function(){
-					$('#locationfrom').validate();
-
-					
-				});
-
-
-
-			function addMore()
-			{
-				$(".clonelocation:last").clone().insertAfter(".clonelocation:last");
-				$('.required').each(function() {
-						 $(this).rules('add', {
-						    required: true,
-						 });
-					});
-			}
-			function deleteRow()
-			{
-				$(".clonelocation").each(function(index,item)
-				{
-					jQuery(':checkbox',this).each(function()
-					{
-						if($(this).is(':checked'))
-						{
-							$(item).remove();
-						}
-					});
-				});
-			}
-		</script> -->
-	<!-- </head>
-	<body>
-		<img class ="background" src="img/background.jpg"/>
-		<div id="back">
-			<div>
-				<img src="img/logo.jpg"/>
-			</div>
-			<div>
-				<?php require_once 'function/menu.php' ?>
-			</div>
-			<div>
-				<h1>Hey Admin Name</h1>
-			</div>
-			<div>
-				<?php if(isset($successmsg)){?>
-					<p class = "success" ><?php echo $successmsg ?></p>
-				<?php }?>
-			</div>
-			<div>
-				<div>
-					<h2>Location</h2>
-				</div>
-				<hr/>
-				<div style="background:grey;">
-					<form method="post" action="<?php echo $_SERVER['PHP_SELF']?>" id="locationfrom">
-						<div class="clonelocation">
-							
-							<div>
-								<label for="location">Location</label>
-								<input type="text" name="name" value="" required  class="required" />
-								
-							</div>
-							<div>
-								<label for="longitude">Longitude</label>
-								<input type="text" name="longitude" value="" required  class="required" />
-								
-							</div>
-							<div>
-								<label for="latitude">Latitude</label>
-								<input type="text" name="latitude" value=""/>
-								
-							</div>
-						</div>
-						<div>
-							<input type="submit" value="ADD" name="addLocation"/>
-						</div>
-					</form>
-				</div>
-				<div>
-					<table>
-						<tr>
-							<th>id</th>
-							<th>Name</th>
-							<th>Longitude</th>
-							<th>latitude</th>
-						</tr>
-						<?php foreach($locations as $key => $location) {?>
-
-						<tr>
-							<td><?php echo $location['Location_id']?></td>
-							<td><?php echo $location['Name']?></td>
-							<td><?php echo $location['Longitute']?></td>
-							<td><?php echo $location['Latitude']?></td>
-						</tr>
-					<?php } ?>
-					</table>
-				</div>
-			</div>
-		</div>
-	</body>
-</html> --> -->

@@ -49,8 +49,7 @@
 			{
 				$error['username'] = 'username should be minimum 8 character.';
 			}
-			else
-			{
+			
 				foreach($username_db as $key => $user)
 				{
 					if($user['username'] == $username)
@@ -58,7 +57,7 @@
 						$error['username'] = "Username already taken";
 					}
 				}
-			}
+			
 		}
 		else
 		{

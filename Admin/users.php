@@ -54,15 +54,28 @@
 				<table border="1px">
 					<tr>
 						<th>Id</th>
+						<th>Name</th>
 						<th>Username</th>
 						<th>Email</th>
+						<th>Gender</th>
+						<th>Phone no.</th>
+						<th>Country</th>
 						<th>Action</th>
 					</tr>
 					<?php foreach($users as $key => $user) {?>
 					<tr align="center">
 						<td><?php echo $key+1?></td>
+						<td align="left">
+							<img src="../user/img/<?=$user['image']?>" width="50px">
+
+							<?php echo $user['name']?>
+							
+						</td>
 						<td><?php echo $user['username']?></td>
 						<td><?php echo $user['email']?></td>
+						<td><?php echo $user['gender']?></td>
+						<td><?php echo $user['phone']?></td>
+						<td><?php echo $user['country']?></td>
 						<td>
 							<?php 
 								$action = $user['status'];

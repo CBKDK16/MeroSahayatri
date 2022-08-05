@@ -27,6 +27,7 @@
     </nav>
     <div class="side-menu">
         <center> 
+
             <img src="img/<?=$_SESSION['image']?>">
         <!-- <br><br>-->
             <h2>
