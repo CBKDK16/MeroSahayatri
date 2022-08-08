@@ -1,4 +1,4 @@
-<?php
+ <?php
 
     require_once 'function/check_session.php';
 ?>

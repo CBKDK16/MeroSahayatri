@@ -85,7 +85,7 @@
 		}
 		else
 		{
-			$error['repassword'] = 'Enter pervious to confirm.';
+			$error['repassword'] = 'Password is required';
 		}
 
 		//validate email
@@ -212,6 +212,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/all.css?v=<?php echo time();?>">
+    <link rel="stylesheet" type="text/css" href="css/register.css?v=<?php echo time();?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -241,10 +242,10 @@
         <!-- <br>-->
          <?php require "function/menu.php";?>
     </div>
-    <div class="data">
-    	<div>
-					<h2>
-						Admin - Register
+    <div id="register" class="data">
+     		<div id="header-form">
+     				<h3>
+						Registeration
 						<?php 
 							if(isset($successmsg))
 							{
@@ -258,283 +259,99 @@
 								
 							}
 						?>
-					</h2>
-				</div>
-				<div>
-					<form method= "post" action="<?php echo $_SERVER['PHP_SELF']?>" enctype=
+					</h3>
+     		</div>
+     		<div id="register_form">
+     		<form method= "post" action="<?php echo $_SERVER['PHP_SELF']?>" enctype=
 						"multipart/form-data">
-						<table>
-							<tr>
-								<td>Name</td>
-								<td>
-									<input type="text" name="name" value="<?php echo $name?>"/>
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'name'). "</p>";?>
-								</td>
-							</tr>
-							<tr>
-								<td>Username</td>
-								<td>
-									<input type="text" name="username"  value="<?php echo $username?>"/>
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'username'). "</p>";?>
-								</td>
-							</tr>
-							<tr>
-								<td>Password</td>
-								<td>
-									<input type="text" name="password" value="<?php echo $password?>"/>
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'password'). "</p>";?>
-								</td>
-							</tr>
-							<tr>
-								<td>Confirm Password</td>
-								<td>
-									<input type="text" name="repassword" value="<?php echo $repassword?>"/>
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'repassword'). "</p>";?>
-								</td>
-							</tr>
-							<tr>							
-								<td>email</td>
-								<td>
-									<input type="email" name="email"  value="<?php echo $email?>"/>
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'email'). "</p>";?>
-								</td>
-							</tr>
-							<tr>
-								<td>Image</td>
-								<td>
-									<input type="file" name="image"  value="<?php echo $image?>"/>
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'image'). "</p>";?>
-								</td>
-							</tr>
-							<tr>
-								<td>Gender</td>
-								<td>
-									<input type="radio" name="gender" value="M">Male
-									<input type="radio" name="gender" value="F">Female
-									<input type="radio" name="gender" value="O">Other
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'gender'). "</p>";?>
-								</td>
-							</tr>
-							<tr>
-								<td>Country</td>
-								<td>
-									<select name="country">
-										<option value="">Select Country</option>
-										<option value="nepal">Nepal</option>
-										<option value="china">China</option>
-										<option value="india">India</option>
-									</select>
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'country'). "</p>";?>
-								</td>
-							</tr>
-							<tr>
-								<td>Phone No.</td>
-								<td>
-									<input type="number" name="number" value="<?php echo $number?>"/>
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'number'). "</p>";?>
-								</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td>
-									<input type="checkbox" name="termsandconditions"/>Terms and Conditions
-								</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td>
-									<input type="submit" name="btnregister" value="Register"/>
-								</td>
-							</tr>
-							
-						</table>
-					</form>
+				<!-- <fieldset>
+				<legend>Register Form</legend> -->
+				<div id="form_all">
+		     		<div id="f_row" class="form">
+		     			<div class="box">
+							<label>Full Name</label>
+							<input type="text" name="name" placeholder="Enter full name." value="<?php echo $name?>"/>
+							<?php echo "<p class = 'error'>" . displayError($error,'name'). "</p>";?>
+						</div>
+						<div class="box">
+							<label>Username</label>
+							<input type="text" placeholder="Enter username" name="username" value="<?php echo $username?>"/>
+							<?php echo "<p class = 'error'>" .displayError($error,'username'). "</p>";?>
+						</div>
+		     		</div>
+
+		     		<div id="s_row" class="form">
+		     			<div class="box">
+		     				<label>Password</label>
+		     				<input type="text" name="password" placeholder="eg:- Apple*123#" value="<?php echo $password?>"/>
+							<?php echo "<p class = 'error'>" . displayError($error,'password'). "</p>";?>
+		     			</div>
+		     			<div class="box">
+		     				<label>Confirm Password</label>
+		     				<input type="text" name="repassword" placeholder="eg:- Apple*123#" value="<?php echo $repassword?>"/>
+							<?php echo "<p class = 'error'>" . displayError($error,'repassword'). "</p>";?>
+		     			</div>
+		     		</div>
+		     		
+		     		<div id="t_row" class="form">
+		     			<div class="box emails">
+		     				<label>Email</label>
+		     				<div class="email">
+		   		  				<input type="email" placeholder="eg:. name1@gmail.com" name="email"  value="<?php echo $email?>"/>
+								<?php echo "<p class = 'error'>" . displayError($error,'email'). "</p>";?>
+							</div>
+		     			</div>
+		     		</div>
+		     		
+		     		<div id="f_row" class="form">
+		     			<div class="box">
+		     				<label>Image</label>
+		     				<input type="file" name="image"  value="<?php echo $image?>"/>
+							<?php echo "<p class = 'error'>" . displayError($error,'image'). "</p>";?>
+		     			</div>
+		     			<div class="box">
+		     				<label>Phone no.</label>
+		     				<input type="number" placeholder="98********" name="number" value="<?php echo $number?>"/>
+							<?php echo "<p class = 'error'>" . displayError($error,'number'). "</p>";?>
+		     			</div>
+		     		</div>
+		     		
+		     		<div id="fi_row" class="form">
+		     			<div class="box">
+		     				<label>Gender</label>
+		     				<div class="inline input">
+			     				<input type="radio" name="gender" value="M">Male
+								<input type="radio" name="gender" value="F">Female
+								<input type="radio" name="gender" value="O">Other
+							</div>
+							<?php echo "<p class = 'error'>" . displayError($error,'gender'). "</p>";?>
+		     			</div>
+		     			<div class="box">
+		     				<label>Country</label>
+		     				<select name="country">
+								<option value="">Select Country</option>
+								<option value="nepal">Nepal</option>
+								<option value="china">China</option>
+								<option value="india">India</option>
+							</select>
+							<?php echo "<p class = 'error'>" . displayError($error,'country'). "</p>";?>
+		     			</div>
+		     		</div>
+		     		
+		     		<div id="si_row" class="form">
+		     			
+		     		</div>
+		     		
+		     		<div id="ei_row" class="form">
+		     			<div class="box submit">
+		     				<input type="submit" name="btnregister" value="Register"/>
+		     			</div>
+	     			</div>
 				</div>
-     </div>
+				</fieldset>
+	     	</form>
+     		
+     	</div>
 </body>
 
 </html>
-
-
-//purano
-<!-- <!doctype html>
-<html>
-	<head>
-		<title>Dashboard</title>
-		<style>
-			#back{
-				background-image: url('img/background.jpg');
-				height: 750px;
-			}
-			a{
-				color: #fff;
-			}
-			h1{
-				color: #fff;
-			}
-			.error{
-				color: red;
-			}
-			/*img{
-				position: absolute;
-			}*/
-		</style>
-	</head>
-	<body>
-		<div id="back">
-			<div>
-				<img src="img/logo.jpg"/>
-			</div>
-			<div>
-				<?php require_once 'function/menu.php' ?>
-			</div>
-			<div>
-				<h1>Hey Admin Name</h1>
-				<div>
-					<h2>
-						Admin - Register
-						<?php 
-							if(isset($successmsg))
-							{
-								echo " - " .$successmsg;
-							}
-							else if (isset($failed)) {
-								echo " - " . $failed;
-							}
-							else
-							{
-								
-							}
-						?>
-					</h2>
-				</div>
-				<div>
-					<form method= "post" action="<?php echo $_SERVER['PHP_SELF']?>" enctype=
-						"multipart/form-data">
-						<table>
-							<tr>
-								<td>Name</td>
-								<td>
-									<input type="text" name="name" value="<?php echo $name?>"/>
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'name'). "</p>";?>
-								</td>
-							</tr>
-							<tr>
-								<td>Username</td>
-								<td>
-									<input type="text" name="username"  value="<?php echo $username?>"/>
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'username'). "</p>";?>
-								</td>
-							</tr>
-							<tr>
-								<td>Password</td>
-								<td>
-									<input type="text" name="password" value="<?php echo $password?>"/>
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'password'). "</p>";?>
-								</td>
-							</tr>
-							<tr>
-								<td>Confirm Password</td>
-								<td>
-									<input type="text" name="repassword" value="<?php echo $repassword?>"/>
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'repassword'). "</p>";?>
-								</td>
-							</tr>
-							<tr>							
-								<td>email</td>
-								<td>
-									<input type="email" name="email"  value="<?php echo $email?>"/>
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'email'). "</p>";?>
-								</td>
-							</tr>
-							<tr>
-								<td>Image</td>
-								<td>
-									<input type="file" name="image"  value="<?php echo $image?>"/>
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'image'). "</p>";?>
-								</td>
-							</tr>
-							<tr>
-								<td>Gender</td>
-								<td>
-									<input type="radio" name="gender" value="M">Male
-									<input type="radio" name="gender" value="F">Female
-									<input type="radio" name="gender" value="O">Other
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'gender'). "</p>";?>
-								</td>
-							</tr>
-							<tr>
-								<td>Country</td>
-								<td>
-									<select name="country">
-										<option value="">Select Country</option>
-										<option value="nepal">Nepal</option>
-										<option value="china">China</option>
-										<option value="india">India</option>
-									</select>
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'country'). "</p>";?>
-								</td>
-							</tr>
-							<tr>
-								<td>Phone No.</td>
-								<td>
-									<input type="number" name="number" value="<?php echo $number?>"/>
-								</td>
-								<td> 
-									<?php echo "<p class = 'error'>" . displayError($error,'number'). "</p>";?>
-								</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td>
-									<input type="checkbox" name="termsandconditions"/>Terms and Conditions
-								</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td>
-									<input type="submit" name="btnregister" value="Register"/>
-								</td>
-							</tr>
-							
-						</table>
-					</form>
-				</div>
-			</div>
-		</div>
-	</body>
-</html> -->

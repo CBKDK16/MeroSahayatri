@@ -86,35 +86,43 @@ echo "</pre>";
 
 <body> 
     <nav>
-         <label>Mero Sahayatri - User</label>
-         <div class="side-menu">
-	        <center> 
-	        	<img src="img/<?=$_SESSION['image']?>">
-	        </center>
-	    </div>
-	    <div class="side-menu">
-	        <center> 
-	            <h2>
-	                <?php
-	                    echo $_SESSION['username'];
-	                ?>
-	            </h2>
-	        </center>
-	    </div>
-        <ul>
-            <li>
-                <a href="logout.php">Logout</a>
-            </li>
-        </ul>
-        <div class="side-menu">
-	        <form method="post" action="<?php echo $_SERVER['PHP_SELF']  ?>">
-	        	<input type="text" name="search" id="search" value="<?php echo $str?>" placeholder="Search here....">
-	        	<input type="submit" name="enter" value="Search">
-	        </form>
-	    </div>
-         <label for="menu" class="menu-bar"> 
-            <i class="fa fa-bars"></i> 
-        </label>
+         <div id="nav" class="all">
+         	<label>Mero Sahayatri - User</label>
+			<div id="menu-bar">
+					<?php require "function/menu-list.php"?>
+			</div>
+				
+		</div>
+		<div id="nav-menu">
+	         <div class="side-menu">
+		        <center> 
+		        	<img src="img/<?=$_SESSION['image']?>">
+		        </center>
+		    </div>
+		    <div class="side-menu">
+		        <center> 
+		            <h2>
+		                <?php
+		                    echo $_SESSION['username'];
+		                ?>
+		            </h2>
+		        </center>
+		    </div>
+	        <ul>
+	            <li>
+	                <a href="logout.php" style="background-color: rgb(55, 34, 246);">Logout</a>
+	            </li>
+	        </ul>
+	        <div class="side-menu">
+		        <form method="post" action="<?php echo $_SERVER['PHP_SELF']  ?>">
+		        	<input type="text" name="search" id="search" value="<?php echo $str?>" placeholder="Search here....">
+		        	<input type="submit" name="enter" value="Search">
+		        </form>
+		    </div>
+	         <label for="menu" class="menu-bar"> 
+	            <i class="fa fa-bars"></i> 
+	        </label>
+    	</div>
     </nav>
     <!-- <div class="side-menu">
         <center> 

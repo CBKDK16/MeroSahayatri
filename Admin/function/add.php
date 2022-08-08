@@ -37,7 +37,7 @@
 	}
 ?>
 <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
-	<div>
+	<div class="box">
 		<div>
 			<label>Vehicle</label>
 		</div>
@@ -56,7 +56,7 @@
 		</div>
 	</div>
 
-	<div>
+	<div class="box">
 		<div>
 			<label>From</label>
 		</div>
@@ -74,7 +74,7 @@
 		</div>
 	</div>
 
-	<div>
+	<div class="box">
 		<div>
 			<label>To</label>
 		</div>
@@ -92,17 +92,17 @@
 		</div>
 	</div>
 
-	<div>
+	<div class="box detail">
 		<div>
 			<label>Details</label>
 		</div>
 		<hr/>
-		<div>
+		<div class="box1">
 			<label for="fare">Fare</label>
 			<input type="number" name="fare" placeholder="eg.50" value="<?php echo isset($fare)?$fare:''; ?>"/>
 			<?php echo displayError($error,'fare');?>
 		</div>
-		<div>
+		<div class="box1">
 			<label for="timeinterval">Time Interval</label>
 			<input type="text" name="timeinterval" placeholder="eg.Every 10min" value="<?php echo $timeinterval ?>"/>
 			<?php 
@@ -110,7 +110,7 @@
 					echo displayError($error,'timeinterval');
 			?>
 		</div>
-		<div>
+		<div class="box1">
 			<label for="available">Available</label>
 			<input type="text" name="available"
 			placeholder="eg.6am to 7pm" value="<?php echo $available?>" />

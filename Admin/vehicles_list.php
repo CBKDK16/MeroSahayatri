@@ -33,6 +33,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/all.css?v=<?php echo time();?>">
+    <link rel="stylesheet" type="text/css" href="css/route_list.css?v=<?php echo time();?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -66,10 +67,12 @@
     	<div>
 				<h2>Routes List</h2>
 		</div>
-    	<div>
-				<table border="1px">
+    	<div id="table">
+    		<fieldset>
+				<legend>Route List</legend>
+				<table>
 					<tr>
-						<th>Name</th>
+						<th>Route id</th>
 						<th>From</th>
 						<th>To</th>
 						<th>Action</th>
@@ -77,7 +80,7 @@
 					</tr>
 					<?php foreach($routes as $key => $route) {?>
 					<tr>
-						<td><?php echo $route['Route_id']?></td>
+						<td><?php echo $key+1?></td>
 						<td>
 							<?php 
 								$ro = id_to_name($route,'From_id');
@@ -91,16 +94,17 @@
 							?>
 						</td>
 						<td>
-							<a href="update.php?id=<?php echo $route['Route_id']?>">Update</a>
+							<a class = "action" href="update.php?id=<?php echo $route['Route_id']?>">Update</a>
 							<a href="delete.php?id=<?php echo $route['Route_id']?>" onclick="return confirm('Are you sure to delete?')">Delete</a>
 						</td>
 						<td>
-							<a href="checkpoint.php?id=<?php echo $route['Route_id']?>">Add</a>
+							<a class = "action" href="checkpoint.php?id=<?php echo $route['Route_id']?>">Add</a>
 						</td>
 					</tr>
 				<?php }?> 
 				</table>
-			</div>
+			</fieldset>
+		</div>
      </div>
 </body>
 

@@ -1,0 +1,115 @@
+*{
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: 'Poppins',sans-serif;
+}
+body{
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5%;
+}
+#container-user{
+	height: 90vh;
+	width: 65vw;
+	display:flex;
+	box-shadow: 5px 5px 30px;
+}
+
+/*//info_ms*/
+#info_ms{
+	width: 30vw;
+	height: 90vh;
+	background-color: #20b2aa;
+	color: white;
+	padding: 50px 30px;
+}
+
+#info_ms p{
+	margin: 20px 0px;
+}
+#login a{
+	display: flex;
+	justify-content: center;
+	text-decoration: none;
+}
+#login a:hover{
+	color: #fff;
+}
+/*//register*/
+#register{
+	width: 70vw;
+	height: 90vh;
+}
+#header{
+	
+	margin: 20px 0px 10px 50px;
+}
+#register_form{
+	padding: 20px;
+}
+.form{
+	display: flex;
+}
+#form_all{
+	padding: 10px;
+	display: grid;
+	justify-content: center;
+}
+.box{
+	height: 70px;
+	margin: 10px;
+	display: grid;
+}
+.box input{
+	height: 30px;
+	width: 250px;
+}
+.inline{
+	display: flex;
+    align-items: center;
+    height: 0px;
+}
+.emails{
+	height: 55px;
+}
+.email{
+	height: auto;
+	display: flex;
+	align-items: center;
+}
+.email input{
+	width: 300px;
+	margin-right: 20px;
+}
+#fi_row input{
+	height: 25px;
+	width: 35px;
+	margin-left: 10px;
+}
+#sev_row input{
+	height: 25px;
+	width: 35px;
+	margin: 0px 10px;
+}
+.submit{
+	height: auto;
+	margin: 0px;
+}
+#ei_row{
+	display: flex;
+	justify-content: center;
+
+}
+.submit input{
+	width: 100px;
+    height: auto;
+    padding: 6px;
+    background-color: blueviolet;
+    color: white;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+}

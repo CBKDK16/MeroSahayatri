@@ -1,0 +1,89 @@
+.data{
+	display:flex;
+}
+.class{
+	float:left;
+}
+#form{
+	display: flex;
+	padding: 10px;
+	width: 325px;
+	margin: 20px;
+	box-shadow: 5px 5px 20px;
+}
+#form label{
+	margin-top:10px
+}
+.vehicle{
+	display: flex;
+}
+#form input{
+	margin-left: 20px;
+}
+#form button{
+	margin-left: 20px;
+	padding: 5px;
+	width: 65px;
+	border-radius: 8%;
+	border: none;
+	background-color: blueviolet;
+	color: white;
+}
+#form button:hover{
+	color: #000;
+	background-color: #c9c9df;
+}
+#add{
+	display: flex;
+    justify-content: center;
+}
+#add input{
+	margin: 10px;
+    padding: 5px;
+    width: 60px;
+    background-color: blueviolet;
+    color: white;
+    border:none;
+}
+#add input:hover{
+	background-color: blanchedalmond;
+	color: blue;
+}
+
+/*Table*/
+#table{
+	width: 600px;
+	padding: 20px;
+	margin: 30px;
+	box-shadow: 5px 5px 10px;
+}
+#wid{
+	width:1000px;
+	padding: 20px;
+	margin: 30px;
+	box-shadow: 5px 5px 10px;
+}
+table{
+	display: flex;
+	justify-content: center;
+}
+#table th{
+	background-color: #4859cd;
+	box-shadow: 5px 5px 40px;
+	color: #fff;
+	padding: 7px;
+	width: 60px;
+	position:sticky;
+	top:0px;
+}
+#table td{
+	padding: 5px;
+	width: 60px;
+	border-bottom: 1px solid #c9c9df;
+}
+table a{
+	color: red;
+}
+table a:hover{
+	color: blue;
+}

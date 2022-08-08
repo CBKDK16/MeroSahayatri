@@ -1,0 +1,60 @@
+#form{
+	display: flex;
+	padding: 20px;
+	width: 600px;
+	margin: 50px;
+	box-shadow: 5px 5px 20px;
+	border-radius: 3%;
+}
+form{
+	display: flex;
+}
+.vehicle{
+	display: flex;
+}
+#form input{
+	margin-left: 20px;
+}
+#form button{
+	margin-left: 20px;
+	padding: 5px;
+	width: 65px;
+	border-radius: 8%;
+	border: none;
+	background-color: blueviolet;
+	color: white;
+}
+#form button:hover{
+	color: #000;
+	background-color: #c9c9df;
+}
+
+/*Table*/
+#table{
+	width: 300px;
+	padding: 20px;
+	margin: 50px;
+	box-shadow: 5px 5px 10px;
+}
+table{
+	display: flex;
+	justify-content: center;
+}
+#table th{
+	background-color: #4859cd;
+	box-shadow: 5px 5px 40px;
+	color: #fff;
+	padding: 7px;
+	width: 60px;
+}
+#table td{
+	padding: 5px;
+	width: 60px;
+	border-bottom: 1px solid #c9c9df;
+}
+table a{
+	color: red;
+}
+table a:hover{
+	color: blue;
+}

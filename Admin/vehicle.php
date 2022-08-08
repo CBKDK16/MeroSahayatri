@@ -95,6 +95,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/all.css?v=<?php echo time();?>">
+    <link rel="stylesheet" type="text/css" href="css/route.css?v=<?php echo time();?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -124,8 +125,9 @@
         <!-- <br>-->
          <?php require "function/menu.php";?>
     </div>
-    <div class="data">
-    	<div>
+    <div class="data"> 
+    	<div id="route">
+    		<div align="center">
 				<h2>
 					Route
 					<?php if(isset($successmsg))
@@ -135,12 +137,15 @@
 					?>
 				</h2>
 			</div>
-			<div id="addvehicleform">
+			<div id="add">
 				<?php require_once 'function/add.php' ?>
 				<br/>
-				<input type="submit" value="Add" name="addvehicle"/>
+				<div id="button">
+					<input type="submit" value="Add" name="addvehicle"/>
+				</div>
 				</form>
 			</div>
+		</div>
      </div>
 </body>
 

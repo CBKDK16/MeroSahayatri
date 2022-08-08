@@ -94,6 +94,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/all.css?v=<?php echo time();?>">
+    <link rel="stylesheet" type="text/css" href="css/location.css?v=<?php echo time();?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -134,8 +135,7 @@
 							<?php }?>
 					</h2>
 				</div>
-				<hr/>
-				<div style="background:grey;">
+				<div id="form">
 					<form method="post" action="<?php echo $_SERVER['PHP_SELF']?>" id="locationfrom">
 						<div class="clonelocation">
 							
@@ -158,12 +158,15 @@
 								
 							</div>
 						</div>
-						<div>
+						<div id="add">
 							<input type="submit" value="ADD" name="addLocation"/>
 						</div>
 					</form>
 				</div>
-				<div>
+			</div>
+				<div id="table">
+					<fieldset>
+					<legend>Location List</legend>
 					<table>
 						<tr>
 							<th>id</th>
@@ -175,7 +178,7 @@
 						<?php foreach($locations as $key => $location) {?>
 
 						<tr>
-							<td><?php echo $location['Location_id']?></td>
+							<td><?php echo $key+1?></td>
 							<td><?php echo $location['Name']?></td>
 							<td><?php echo $location['Longitute']?></td>
 							<td><?php echo $location['Latitude']?></td>
@@ -183,8 +186,9 @@
 						</tr>
 					<?php } ?>
 					</table>
+					</fieldset>
 				</div>
-			</div>
+			
      </div>
 </body>
 

@@ -30,6 +30,7 @@ nav {
     background: #1D2951;
     line-height: 80px;
     width: 100%;
+    display: inline-flex;
 }
 
 label {
@@ -43,12 +44,11 @@ label {
 
 nav ul {
     float: right;
-    margin-right: 20px;
+    margin:0px 20px;
 }
 
 nav ul li {
     line-height: 80px;
-    margin: 0 10px;
 }
 
 nav ul li a {
@@ -56,7 +56,6 @@ nav ul li a {
     font-size: 20px;
     padding: 6px 15px;
     font-weight: 600;
-    background-color: rgb(55, 34, 246);
     border-radius: 3px;
 }
 
@@ -120,7 +119,41 @@ nav .menu-bar {
 .side-menu .Logout {
     display: none;
 }
-
+#user-img{
+    display: flex;
+}
+#menu-img{
+    display: none;
+    cursor: pointer;
+}
+#nav{
+    height: 15vh;
+    width: 65%;
+    display: flex;
+    align-items: center;
+}
+#nav-menu{
+    width: 50%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+#nav #menu-img img{
+    width: 50px;
+    margin: 30px;
+}
+#nav ul li{
+    list-style: none;
+    display: inline-block;
+}
+#nav ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 15px;
+}
+#nav ul li a:hover{
+    color: #ff5ea1;
+}
 @media (max-width:850px) {
     .side-menu a span {
         display: none;

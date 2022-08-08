@@ -45,11 +45,11 @@
 		}
 		//The fetch_assoc() / mysqli_fetch_assoc() function fetches a result row as an associative array.
 		$route = mysqli_fetch_assoc($res2);
-		print_r($route);
+		
 		$fare = $route['Fare'];
 		$timeinterval = $route['Duration'];
 		$available = $route['Available'];
-		print_r($_POST);
+		
 	}
 	catch(Exception $e)
 	{
@@ -122,6 +122,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/all.css?v=<?php echo time();?>">
+    <link rel="stylesheet" type="text/css" href="css/route.css?v=<?php echo time();?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -152,8 +153,9 @@
          <?php require "function/menu.php";?>
     </div>
     <div class="data">
-    	<div>
-				<h2>Vehicle - Update
+    	<div id="route">
+    		<div>
+				<h2>Route - Update
 					<?php
 						if(isset($hello)){
 							echo " - ".$hello;
@@ -264,9 +266,13 @@
 						</div>
 					</div>
 					<br/>
-					<input type="submit" value="Update" name="updatevehicle"/>
+					<div id="button">
+						<input type="submit" value="Update" name="updatevehicle"/>
+					</div>
+					
 				</form>
 			</div>
+		</div>
      </div>
 </body>
 

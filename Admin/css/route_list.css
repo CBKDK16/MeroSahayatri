@@ -1,0 +1,37 @@
+/*Table*/
+#table{
+	text-align: center;
+	width: 700px;
+	padding: 20px;
+	margin: 50px;
+	box-shadow: 5px 5px 10px;
+}
+table{
+	display: flex;
+	justify-content: center;
+	margin: 5px;
+}
+#table th{
+	background-color: #4859cd;
+	box-shadow: 5px 5px 40px;
+	color: #fff;
+	padding: 7px;
+	width: 60px;
+}
+#table td{
+	padding: 5px;
+	width: 100px;
+	border-bottom: 1px solid #c9c9df;
+}
+table a{
+	color: red;
+}
+table a:hover{
+	color: grey;
+}
+.action{
+	color: blue;
+}
+.action:hover{
+	color: brown;
+}

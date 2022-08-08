@@ -69,6 +69,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/all.css?v=<?php echo time();?>">
+    <link rel="stylesheet" type="text/css" href="css/vehicletype.css?v=<?php echo time();?>">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -98,8 +100,8 @@
         <!-- <br>-->
          <?php require "function/menu.php";?>
     </div>
-    <div class="data">
-    	<div>
+    <div class="data" >
+    		<div id="form">
 				<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
 					<div class="vehicle">
 						<label>
@@ -119,17 +121,21 @@
 						}
 						?>
 					</div>
-						<br>
+					<br>
 					<div>
 						<button type="submit" name="add">Add</button>
 					</div>
 				</form>
 			</div>
-			<div>
+
+			<div  id="table">
+				<fieldset>
+				<legend>Vehicle Type List</legend>
 					<table>
 						<tr>
 							<th>id</th>
 							<th>type</th>
+							<th>Action</th>
 						</tr>
 						<?php foreach($locations as $key => $location) {?>
 
@@ -142,7 +148,9 @@
 						</tr>
 					<?php } ?>
 					</table>
+				</fieldset>
 			</div>
+			
      </div>
 </body>
 

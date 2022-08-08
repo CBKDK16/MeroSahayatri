@@ -1,0 +1,37 @@
+/*Table*/
+#table{
+	width: 1000px;
+	padding: 20px;
+	margin: 30px;
+	box-shadow: 5px 5px 10px;
+}
+table{
+	display: flex;
+	justify-content: center;
+}
+#table th{
+	background-color: #4859cd;
+	box-shadow: 5px 5px 40px;
+	color: #fff;
+	padding: 7px;
+	position:sticky;
+	top:0px;
+}
+#table td{
+	padding: 5px;
+	border-bottom: 1px solid #c9c9df;
+}
+table a{
+	color: red;
+}
+table a:hover{
+	color: blue;
+}
+#table img{
+	border-radius: 50%;
+}
+#username{
+	display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}

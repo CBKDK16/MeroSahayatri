@@ -14,10 +14,9 @@ body {
 
 .data { 
     padding: 20px;
-    color: blueviolet;
+    color: black;
     background-image: url('img/background.jpg');
-    background-color: lightseagreen;
-    height: 100vh;
+    height: auto;
     width: 100vw;
     margin-left: 250px;
     position: fixed;

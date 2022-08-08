@@ -40,7 +40,6 @@
 				array_push($checkpoint,$row_checkpoint);
 			}
 		}
-		print_r($checkpoint);
 	}
 	catch(Exception $e)
 	{
@@ -80,6 +79,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/all.css?v=<?php echo time();?>">
+    <link rel="stylesheet" type="text/css" href="css/location.css?v=<?php echo time();?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -110,9 +110,10 @@
     </div>
     <div class="data">
     	<div>
+    		<div>
 				<h2>Vehicle - Checkpoint</h2>
 			</div>
-			<div id="addvehicleform">
+			<div id="form">
 				<form method="post" action="<?php echo $_SERVER['PHP_SELF']?>?id=<?php echo $cid?>">
 					<div>
 						<div>
@@ -131,19 +132,24 @@
 							</select>
 							<?php echo displayError($error,'checkpointlocation');?>
 						</div>
-					</div>
-				
+					</div>	
 					<br/>
-					<input type="submit" value="Add" name="addcheckpoint"/>
+					<div id="add">
+						<input type="submit" value="Add" name="addcheckpoint"/>
 					</div>
-					<div id="table_list">
-						<table border="1px">
+				</form>
+			</div>
+		</div>
+					<div id="table">
+						<fieldset>
+							<legend>Checkpoint List</legend>
+						<table>
 							<tr>
-								<td>S.N</td>
-								<td>Name</td>
-								<td>Longitude </td>
-								<td>Latitude</td>
-								<td>Action</td>
+								<th>S.N</th>
+								<th>Name</th>
+								<th>Longitude </th>
+								<th>Latitude</th>
+								<th>Action</th>
 							</tr>
 							<?php foreach ($checkpoint as $key => $cp) {?>
 							<tr>
@@ -165,8 +171,9 @@
 							</tr>
 							<?php }?>
 						</table>
+						</fieldset>
 					</div>
-				</form>	
+				
      </div>
 </body>
 

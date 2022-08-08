@@ -20,6 +20,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/all.css?v=<?php echo time();?>">
+    <link rel="stylesheet" type="text/css" href="css/users.css?v=<?php echo time();?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -50,8 +51,8 @@
     	<div>
 				<h2>Users</h2>
 			</div>
-			<div>
-				<table border="1px">
+			<div id="table">
+				<table>
 					<tr>
 						<th>Id</th>
 						<th>Name</th>
@@ -65,7 +66,7 @@
 					<?php foreach($users as $key => $user) {?>
 					<tr align="center">
 						<td><?php echo $key+1?></td>
-						<td align="left">
+						<td align="left" id="username">
 							<img src="../user/img/<?=$user['image']?>" width="50px">
 
 							<?php echo $user['name']?>

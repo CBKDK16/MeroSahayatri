@@ -1,0 +1,35 @@
+#route{
+	padding: 10px;
+	width: 450px;
+	margin: 20px;
+	box-shadow: 5px 5px 20px;
+}
+.box{
+	height: 60px;
+	width: 400px;
+}
+.detail{
+	height: 140px;
+}
+.detail input{
+	width: 105px;
+}
+.box1{
+	margin: 10px;
+}
+#button{
+	display: flex;
+    justify-content: center;
+}
+#button input{
+	margin: 10px;
+    padding: 5px;
+    width: 60px;
+    background-color: blueviolet;
+    color: white;
+    border:none;
+}
+#button input:hover{
+	background-color: blanchedalmond;
+	color: blue;
+}

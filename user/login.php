@@ -70,7 +70,7 @@ if (isset($_POST['login'])){
 							setcookie('username',$username,time() + (7*24*60*60));
 						}
 						//redirect to defined page
-						header('location:route.php');
+						header('location:home.php');
 					}
 					else{
 						$message['disable'] ="Your account is Deactived.</br>";
