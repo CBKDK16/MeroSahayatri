@@ -167,6 +167,10 @@
 				<div id="table">
 					<fieldset>
 					<legend>Location List</legend>
+					<div class="scroll-bg">
+					<div class="scroll-div">
+					<div class="scroll-object">
+					
 					<table>
 						<tr>
 							<th>id</th>
@@ -185,10 +189,13 @@
 							<td><a href="delete_location.php?id=<?php echo $location['Location_id'] ?>" onclick="return confirm('Are you sure to delete?')">Delete</a></td>
 						</tr>
 					<?php } ?>
+					
 					</table>
+					</div>
+					</div>
+					</div>
 					</fieldset>
-				</div>
-			
+			</div>
      </div>
 </body>
 

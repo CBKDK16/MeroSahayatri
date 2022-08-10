@@ -1,12 +1,16 @@
 <?php
+session_start();
+if (isset($_SESSION['user'])) {
+	header('location:home.php');
+}
 require "function/constant.php";
 $connection =mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
 $message = [];
-if(isset($_COOKIE['username']))
+if(isset($_COOKIE['user']))
 {
 	session_start();
-	$_SESSION['username'] = $_COOKIE['username'];
-	header('location:route.php');
+	$_SESSION['user'] = $_COOKIE['user'];
+	header('location:home.php');
 }
 try{
 	$users = [];
@@ -60,8 +64,8 @@ if (isset($_POST['login'])){
 					{
 						session_start();
 						//store extra data into session
-						$_SESSION['username'] =$username;
-						$_SESSION['image'] = $user['image'];
+						$_SESSION['user'] =$username;
+						$_SESSION['image_user'] = $user['image'];
 
 						//check remember
 						if(isset($_POST['remember']))

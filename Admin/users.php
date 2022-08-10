@@ -52,6 +52,9 @@
 				<h2>Users</h2>
 			</div>
 			<div id="table">
+				<div class="scroll-bg">
+						<div class="scroll-div">
+					<div class="scroll-object">
 				<table>
 					<tr>
 						<th>Id</th>
@@ -95,6 +98,9 @@
 				<?php }?>
 				</table>
 			</div>
+		</div>
+	</div>
+</div>
      </div>
 </body>
 

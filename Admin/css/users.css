@@ -35,3 +35,21 @@ table a:hover{
     justify-content: flex-start;
     align-items: center;
 }
+.scroll-div{
+	/*width: 600px;*/
+	/*background: rgb(11, 11, 114);*/
+	height: 400px;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+.scroll-bg{
+/*width: 30px;*/
+/*margin: 3 auto;*/
+/*padding: 10px 20px;*/
+}
+.scroll-object{
+	color: grey;
+	font-family: cursive;
+	font-size: 18px;
+	padding: 20px;
+}

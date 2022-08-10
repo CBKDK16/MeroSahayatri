@@ -1,9 +1,9 @@
 <?php 
-	if(isset($_COOKIE['username']))
+	if(isset($_COOKIE['user']))
 	{
 		session_start();
-		$_SESSION['username'] = $_COOKIE['username'];
-		header('location:route.php');
+		$_SESSION['user'] = $_COOKIE['user'];
+		header('location:index.php');
 	}	
 ?>
 <!DOCTYPE html>

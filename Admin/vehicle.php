@@ -45,6 +45,8 @@
 		if(requireValidation($_POST,'fare'))
 		{
 			$fare = $_POST['fare'];
+			if($fare < 0)
+				$error['fare'] = "Fare shoundn't be negative";
 		}
 		else
 		{

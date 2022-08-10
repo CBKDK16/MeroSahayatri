@@ -1,7 +1,7 @@
 /*Table*/
 #table{
 	text-align: center;
-	width: 700px;
+	width: 1000px;
 	padding: 20px;
 	margin: 50px;
 	box-shadow: 5px 5px 10px;
@@ -34,4 +34,22 @@ table a:hover{
 }
 .action:hover{
 	color: brown;
+}
+.scroll-div{
+	/*width: 600px;*/
+	/*background: rgb(11, 11, 114);*/
+	height: 400px;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+.scroll-bg{
+/*width: 30px;*/
+/*margin: 3 auto;*/
+/*padding: 10px 20px;*/
+}
+.scroll-object{
+	color: grey;
+	font-family: cursive;
+	font-size: 18px;
+	padding: 20px;
 }

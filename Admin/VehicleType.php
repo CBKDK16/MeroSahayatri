@@ -2,8 +2,10 @@
 
 	require_once'function/check_session.php';
 	require_once'function/constant.php';
-	$locations = [];
+	$types = [];
 	$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+
+	//grab data from database
 		try
 		{
 			$select = "SELECT * FROM vehicletype_tbl ORDER BY vehicle_id DESC";
@@ -13,7 +15,7 @@
 			{
 				while($row = mysqli_fetch_assoc($result))
 				{
-					array_push($locations,$row);
+					array_push($types,$row);
 				}
 			}	
 		}
@@ -31,6 +33,13 @@
 	if(isset($_POST['vname']) && !empty($_POST['vname']) && trim($_POST['vname']))
 	{
 		$vname = trim($_POST['vname']);
+		foreach($types as $key => $type)
+		{
+			if($type['Type'] == $vname)
+			{
+				$err['vname'] = 'Duplicate Type';
+			}
+		}
 	}
 	else
 	{
@@ -115,15 +124,16 @@
 						</label>
 						<br>
 						<input type="text" name="vname">
+						
+					</div>
+					<br>
+					<div>
+						<button type="submit" name="add">Add</button>
 						<?php if(isset($err['vname']))
 						{
 							echo $err['vname'];
 						}
 						?>
-					</div>
-					<br>
-					<div>
-						<button type="submit" name="add">Add</button>
 					</div>
 				</form>
 			</div>
@@ -137,13 +147,13 @@
 							<th>type</th>
 							<th>Action</th>
 						</tr>
-						<?php foreach($locations as $key => $location) {?>
+						<?php foreach($types as $key => $type) {?>
 
 						<tr>
-							<td><?php echo $location['Vehicle_id']?></td>
-							<td><?php echo $location['Type']?></td>
+							<td><?php echo $key+1?></td>
+							<td><?php echo $type['Type']?></td>
 							<td>
-								<a href="delete_vehicleType.php?id=<?php echo $location['Vehicle_id']?>" onclick="return confirm('Are you sure to delete?')">Delete</a>
+								<a href="delete_vehicleType.php?id=<?php echo $type['Vehicle_id']?>" onclick="return confirm('Are you sure to delete?')">Delete</a>
 							</td>
 						</tr>
 					<?php } ?>

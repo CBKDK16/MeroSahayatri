@@ -9,14 +9,14 @@
 		<div id="nav-menu">
 	         <div class="side-menu">
 		        <center id="user-img"> 
-		        	<img src="img/<?=$_SESSION['image']?>">
+		        	<img src="img/<?=$_SESSION['image_user']?>">
 		        </center>
 		    </div>
 		    <div class="side-menu">
 		        <center> 
 		            <h2>
 		                <?php
-		                    echo $_SESSION['username'];
+		                    echo $_SESSION['user'];
 		                ?>
 		            </h2>
 		        </center>

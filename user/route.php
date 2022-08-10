@@ -12,51 +12,52 @@ echo "<pre>";
 	{
 		if(isset($_POST['enter']))
 		{
-			if(!$_POST['search'] == NULL){
-			$str = $_POST['search'];
-			$search = "SELECT * from location_tbl where Name like '".$str."%' ";
-			$execute = mysqli_query($con,$search);
-			if(mysqli_num_rows($execute)>0)
+			if(!$_POST['search'] == NULL)
 			{
-				while($row2 = mysqli_fetch_assoc($execute))
+				$str = $_POST['search'];
+				$search = "SELECT * from location_tbl where Name like '".$str."%' ";
+				$execute = mysqli_query($con,$search);
+				if(mysqli_num_rows($execute)>0)
 				{
-					array_push($searchs,$row2);
-				}
-				// print_r($searchs);
-
-				foreach($searchs as $key => $values)
-				{
-					$id = $values['Location_id'];
-					$select = "SELECT * from checkpoint_tbl where location_id = $id";
-					$checkpoint_query = mysqli_query($con,$select);
-					if(mysqli_num_rows($checkpoint_query)>0)
+					while($row2 = mysqli_fetch_assoc($execute))
 					{
-						while($rowa = mysqli_fetch_assoc($checkpoint_query))
+						array_push($searchs,$row2);
+					}
+					// print_r($searchs);
+
+					foreach($searchs as $key => $values)
+					{
+						$id = $values['Location_id'];
+						$select = "SELECT * from checkpoint_tbl where location_id = $id";
+						$checkpoint_query = mysqli_query($con,$select);
+						if(mysqli_num_rows($checkpoint_query)>0)
 						{
-							array_push($route,$rowa);
-							
+							while($rowa = mysqli_fetch_assoc($checkpoint_query))
+							{
+								array_push($route,$rowa);
+								
+							}
 						}
 					}
-				}
-				// print_r($route);
-				foreach($route as $key => $route)
-				{
-					$route_id = $route['route_id'];						 
-					$select = "SELECT * FROM routes_tbl where Route_id = $route_id";
-					$result = mysqli_query($con,$select);
-					if(mysqli_num_rows($result)>0)
+					// print_r($route);
+					foreach($route as $key => $route)
 					{
-						$row = mysqli_fetch_assoc($result);
-						array_push($routes,$row);
+						$route_id = $route['route_id'];						 
+						$select = "SELECT * FROM routes_tbl r right outer join vehicletype_tbl v on r.Vehicle_id = v.Vehicle_id where Route_id = $route_id";
+						$result = mysqli_query($con,$select);
+						if(mysqli_num_rows($result)>0)
+						{
+							$row = mysqli_fetch_assoc($result);
+							array_push($routes,$row);
+						}
 					}
+					sort($routes);
+					// print_r($routes);
 				}
-				sort($routes);
-				// print_r($routes);
-			}
-			else
-			{
-				$error['search'] = "no data found";
-			}
+				else
+				{
+					$error['search'] = "no data found";
+				}
 			}
 			else
 			{
@@ -96,14 +97,14 @@ echo "</pre>";
 		<div id="nav-menu">
 	         <div class="side-menu">
 		        <center> 
-		        	<img src="img/<?=$_SESSION['image']?>">
+		        	<img src="img/<?=$_SESSION['image_user']?>">
 		        </center>
 		    </div>
 		    <div class="side-menu">
 		        <center> 
 		            <h2>
 		                <?php
-		                    echo $_SESSION['username'];
+		                    echo $_SESSION['user'];
 		                ?>
 		            </h2>
 		        </center>
@@ -124,72 +125,7 @@ echo "</pre>";
 	        </label>
     	</div>
     </nav>
-    <!-- <div class="side-menu">
-        <center> 
-        	<img src="img/<?=$_SESSION['image']?>">
-            <h2>
-                <?php
-                    echo $_SESSION['username'];
-                ?>
-            </h2>
-        </center>
-    </div> -->
-    <!-- <div class="data">
-    	<div>
-				<h2>Routes</h2>
-		</div>
-    	<div>
-				<table border="1px" align="center">
-					<tr align="center">
-						<th>Name</th>
-						<th>From</th>
-						<th>To</th>
-						<th>Time Interval</th>
-						<th>Fare</th>
-						<th>Available</th>
-						<th>Checkpoint</th>
-					</tr>
-					<?php foreach($routes as $key => $route) {?>
-					<tr align="center">
-						<td>
-							<?php echo $key+1?>
-								
-						</td>
-						<td>
-							<?php 
-								$ro = id_to_name($route,'From_id');
-								echo $ro['Name'];
-							?>
-						</td>
-						<td>
-							<?php
-							 $ro = id_to_name($route,'To_id');
-								echo $ro['Name'];
-							?>
-						</td>
-						<td>
-							<?php
-								echo $route['Duration'];
-							?>
-						</td>
-						<td>
-							<?php
-								echo $route['Fare'];
-							?>
-						</td>
-						<td>
-							<?php
-								echo $route['Available'];
-							?>
-						</td>
-						<td>
-							<a href="checkpoint.php?id=<?php echo $route['Route_id']?>">View</a>
-						</td>
-					</tr>
-				<?php }?> 
-				</table>
-			</div>
-     </div> -->
+    
      <div id="container">
      			<?php
 	        		if(isset($error['search']))
@@ -225,7 +161,14 @@ echo "</pre>";
 										?>
 									</td>
 								</tr>
-								
+								<tr>
+									<th align="left" class="padding_details">Vehicle: </th>
+									<td class="padding_details">
+										<?php
+											echo $route['Type'];
+										?>
+									</td>
+								</tr>
 								<tr>
 									<th align="left" class="padding_details">Time Interval: </th>
 									<td class="padding_details">
@@ -238,7 +181,7 @@ echo "</pre>";
 									<th align="left" class="padding_details">Fare: </th>
 									<td class="padding_details">
 										<?php
-											echo $route['Fare'];
+											echo "Rs. " .$route['Fare'];
 										?>
 									</td>
 								</tr>

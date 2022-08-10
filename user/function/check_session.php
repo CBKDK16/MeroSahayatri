@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-	if(!$_SESSION['username'] && !$_SESSION['image'])
+	if(!$_SESSION['user'] || !$_SESSION['image_user'])
 	{
 		header('location:login.php?msg=1');
 	}	

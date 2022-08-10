@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (isset($_SESSION['username'])) {
+	header('location:users.php');
+}
+
 require "function/constant.php";
 $connection =mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
 $message = [];
@@ -8,6 +13,7 @@ if(isset($_COOKIE['username']))
 	$_SESSION['username'] = $_COOKIE['username'];
 	header('location:users.php');
 }
+// if(isset(var))
 try{
 	$admins = [];
 	$sql = "select * from admin";

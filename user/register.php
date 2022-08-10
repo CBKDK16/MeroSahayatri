@@ -1,4 +1,5 @@
 <?php
+print_r($_POST);
 	if(isset($_COOKIE['username']))
 	{
 		session_start();
@@ -174,6 +175,9 @@
 			if(!preg_match("/^([0-9]{10})$/",$number)){
 				$error['number'] = "Invalid phone number.";
 			}
+			if($number < 0)
+				$error['number'] = "Invalid phone number.
+			";
 		}
 		else
 		{
@@ -191,7 +195,7 @@
 			else
 			{
 				try{
-					$sql = "insert into user(name,username,email,password,gender,country,phone,image)values('$name','$username','$email',md5('".$password."'),'$gender','$country','$number','$new_img_name')";
+					$sql = "insert into user(name,username,email,password,gender,country,phone,image,status)values('$name','$username','$email',md5('".$password."'),'$gender','$country','$number','$new_img_name',1)";
 					if(mysqli_query($connection,$sql))
 					{
 						$successmsg = "Register sucessfully";

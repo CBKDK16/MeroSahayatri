@@ -9,7 +9,7 @@
 	require 'function/id_to_name.php';
 	try
 	{
-		$select = "SELECT * FROM routes_tbl";
+		$select = "SELECT * FROM routes_tbl r right outer join vehicletype_tbl v on r.Vehicle_id = v.Vehicle_id order by Route_id desc";
 		$result = mysqli_query($connection,$select);
 					
 		if(mysqli_num_rows($result)>0)
@@ -69,12 +69,20 @@
 		</div>
     	<div id="table">
     		<fieldset>
-				<legend>Route List</legend>
+			<legend>Route List</legend>
+    		<div class="scroll-bg">
+			<div class="scroll-div">
+			<div class="scroll-object">
+    		
 				<table>
 					<tr>
 						<th>Route id</th>
 						<th>From</th>
 						<th>To</th>
+						<th>Type</th>
+						<th>Time Interval</th>
+						<th>Fare</th>
+						<th>Available</th>
 						<th>Action</th>
 						<th>Checkpoint</th>
 					</tr>
@@ -94,6 +102,26 @@
 							?>
 						</td>
 						<td>
+							<?php
+								echo $route['Type'];
+							?>
+						</td>
+						<td>
+							<?php
+								echo $route['Duration'];
+							?>
+						</td>
+						<td>
+							<?php
+								echo "Rs. " .$route['Fare'];
+							?>
+						</td>
+						<td>
+							<?php
+								echo $route['Available'];
+							?>
+						</td>
+						<td>
 							<a class = "action" href="update.php?id=<?php echo $route['Route_id']?>">Update</a>
 							<a href="delete.php?id=<?php echo $route['Route_id']?>" onclick="return confirm('Are you sure to delete?')">Delete</a>
 						</td>
@@ -103,7 +131,11 @@
 					</tr>
 				<?php }?> 
 				</table>
-			</fieldset>
+			
+			</div>
+			</div>
+			</div>
+		</fieldset>
 		</div>
      </div>
 </body>
